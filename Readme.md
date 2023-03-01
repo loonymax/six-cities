@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов (простой)»
 
 * Студент: [Алена Халявина](https://up.htmlacademy.ru/react/12/user/1573711).
-* Наставник: [Артем Мошкин] (https://htmlacademy.ru/profile/id2088751).
+* Наставник: [Артем Мошкин](https://htmlacademy.ru/profile/id2088751).
 
 ---
 
