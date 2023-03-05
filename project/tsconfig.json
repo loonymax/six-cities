@@ -1,9 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
-    "paths": {
-       "$*": ["*"]
-    },
+    "baseUrl": "./src",
     "target": "es2020",
     "lib": [
       "dom",

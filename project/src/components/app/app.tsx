@@ -1,5 +1,7 @@
-function App(): JSX.Element {
-  return <p>Hello, world!</p>;
+import { CitiesHomeScreen } from '../../pages/cities-home-screen';
+
+function App() {
+  return <CitiesHomeScreen />;
 }
 
 export default App;
