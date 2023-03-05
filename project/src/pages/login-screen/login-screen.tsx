@@ -1,4 +1,4 @@
-export default function LoginContainer() {
+export default function LoginScreen() {
   return (
     <main className="page__main page__main--login">
       <div className="page__login-container container">
