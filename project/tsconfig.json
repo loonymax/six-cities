@@ -1,8 +1,11 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
+    "rootDir": ".",
+    "baseUrl": "./src",
     "paths": {
-       "$*": ["*"]
+      "components": [
+        "./components"
+      ],
     },
     "target": "es2020",
     "lib": [
