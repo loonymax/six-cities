@@ -1,4 +1,4 @@
-import { CitiesHomeScreen } from '../../pages/cities-home-screen';
+import { CitiesHomeScreen } from 'pages';
 
 type Props = {
   offersCount: number;
