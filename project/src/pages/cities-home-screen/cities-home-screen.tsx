@@ -1,10 +1,10 @@
-import CitiesCard from '../../components/cities-card/cities-card';
+import { CitiesCard } from 'components';
 
-type Props = {
+interface IProps {
   offersCount: number;
 }
 
-export default function CitiesHomeScreen({offersCount}: Props) {
+export default function CitiesHomeScreen({ offersCount }: IProps) {
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
