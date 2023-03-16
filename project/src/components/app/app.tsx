@@ -1,7 +1,5 @@
-import { CitiesHomeScreen } from 'pages';
-import { LoginScreen } from 'pages';
-import { PropertyScreen } from 'pages';
-import { Screen404 } from 'pages';
+import { CitiesHomeScreen, LoginScreen, OfferScreen, Screen404 } from 'pages';
+import { Layout } from 'components';
 import { AppRoute } from 'const';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -13,24 +11,26 @@ function App({ offersCount }: IProps) {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path={AppRoute.Main}
-          element={<CitiesHomeScreen offersCount={offersCount} />}
-        />
-        <Route
-          path={AppRoute.Login}
-          element={<LoginScreen />}
-        />
-        <Route
-          path={AppRoute.Room}
-          element={<PropertyScreen />}
-        />
-        <Route
-          path='*'
-          element={<Screen404 />}
-        />
+        <Route path={AppRoute.Main} element={<Layout />}>
+          <Route
+            path={AppRoute.Main}
+            element={<CitiesHomeScreen offersCount={offersCount} />}
+          />
+          <Route
+            path={AppRoute.Login}
+            element={<LoginScreen />}
+          />
+          <Route
+            path={AppRoute.Offer}
+            element={<OfferScreen />}
+          />
+          <Route
+            path='*'
+            element={<Screen404 />}
+          />
+        </Route>
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 }
 
