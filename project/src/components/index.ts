@@ -4,4 +4,5 @@ export { default as Header } from './header/header';
 export { default as Layout } from './layout/layout';
 export { default as StarIcon } from './star-icon/star-icon';
 export { default as Logo } from './logo/logo';
-
+export { default as OffersList } from './offers-list/offers-list';
+export { default as CommentForm } from './comment-form/comment-form';
