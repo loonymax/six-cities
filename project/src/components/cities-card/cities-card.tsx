@@ -2,20 +2,11 @@ import { Offer } from 'mocks/offers';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { AppRoute } from 'const';
+import { Premium } from 'components';
 
 interface Props {
   offer: Offer;
 }
-
-const createPremium = (premium: boolean) => {
-  if (premium) {
-    return (
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>
-    );
-  }
-};
 
 export default function CitiesCard({ offer }: Props) {
   const { title, price, rating, type, previewImage, isPremium, id } = offer;
@@ -37,9 +28,9 @@ export default function CitiesCard({ offer }: Props) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {createPremium(isPremium)}
+      {isPremium ? <Premium /> : null}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={`${AppRoute.Offer}${id}`} key={id}>
+        <Link key={id} to={AppRoute.Offer.replace(/:id/, `${id}`)}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place interior" />
         </Link>
       </div>
@@ -62,6 +53,6 @@ export default function CitiesCard({ offer }: Props) {
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
-    </article>
+    </article >
   );
 }

@@ -17,9 +17,9 @@ function App() {
             path={AppRoute.Login}
             element={<LoginScreen />}
           />
-          <Route path={AppRoute.Offer}>
-            <Route path=':id' element={<OfferScreen />} />
-          </Route>
+          <Route
+            path={AppRoute.Offer} element={<OfferScreen />}
+          />
           <Route
             path='*'
             element={<Screen404 />}
