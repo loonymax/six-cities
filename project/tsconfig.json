@@ -9,6 +9,9 @@
       "pages": [
         "./pages"
       ],
+      "mocks": [
+        "./mocks"
+      ],
     },
     "target": "es2020",
     "lib": [

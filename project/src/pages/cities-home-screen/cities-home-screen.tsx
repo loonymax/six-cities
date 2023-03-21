@@ -1,5 +1,5 @@
 import { OffersList } from 'components';
-import { Offer } from 'mocks/offers';
+import { Offer } from 'mocks';
 
 interface Props {
   offersList: Offer[];

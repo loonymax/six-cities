@@ -32,6 +32,40 @@ export type Offer = {
   type: string;
 }
 
+export interface Rating {
+  title: string;
+  value: number;
+  id: string;
+}
+
+export const ratingStars: Rating[] = [
+  {
+    title: 'perfect',
+    value: 5,
+    id: '5-stars',
+  },
+  {
+    title: 'good',
+    value: 4,
+    id: '4-stars',
+  },
+  {
+    title: 'not bad',
+    value: 3,
+    id: '3-stars',
+  },
+  {
+    title: 'badly',
+    value: 2,
+    id: '2-stars',
+  },
+  {
+    title: 'terribly',
+    value: 1,
+    id: '1-stars',
+  }
+];
+
 export const offers: Offer[] = [
   {
     'bedrooms': 3,
