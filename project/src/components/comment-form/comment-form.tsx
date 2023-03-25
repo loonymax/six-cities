@@ -16,9 +16,6 @@ export default function CommentForm() {
   const handleFormChange: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement> = (evt) => {
     const { name, value } = evt.target;
     setFormData({ ...formData, [name]: value });
-
-    // eslint-disable-next-line no-console
-    console.log(value);
   };
 
   return (

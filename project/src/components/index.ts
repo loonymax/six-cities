@@ -7,3 +7,4 @@ export { default as Logo } from './logo/logo';
 export { default as OffersList } from './offers-list/offers-list';
 export { default as CommentForm } from './comment-form/comment-form';
 export { default as Premium } from './premium/premium';
+export { default as Map } from './map/map';

@@ -1,5 +1,5 @@
-import { OffersList } from 'components';
-import { Offer } from 'mocks';
+import { OffersList, Map } from 'components';
+import { Offer, city, offers } from 'mocks';
 
 interface Props {
   offersList: Offer[];
@@ -71,7 +71,7 @@ export default function CitiesHomeScreen({ offersList }: Props) {
             </div>
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map"></section>
+            <Map city={city} offers={offers}/>
           </div>
         </div>
       </div>
