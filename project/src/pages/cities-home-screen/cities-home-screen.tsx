@@ -71,7 +71,7 @@ export default function CitiesHomeScreen({ offersList }: Props) {
             </div>
           </section>
           <div className="cities__right-section">
-            <Map city={city} offers={offers}/>
+            <Map city={city} offers={offers} />
           </div>
         </div>
       </div>

@@ -4,7 +4,6 @@ import { City } from 'mocks';
 import 'leaflet/dist/leaflet.css';
 
 export default function useMap(city: City, mapRef: MutableRefObject<HTMLElement | null>): Map | null {
-  const { latitude, longitude, zoom } = city;
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef(false);
 
@@ -12,10 +11,10 @@ export default function useMap(city: City, mapRef: MutableRefObject<HTMLElement 
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = leaflet.map(mapRef.current, {
         center: {
-          lat: latitude,
-          lng: longitude,
+          lat: city.latitude,
+          lng: city.longitude,
         },
-        zoom: zoom,
+        zoom: city.zoom,
       });
 
       leaflet
@@ -30,7 +29,7 @@ export default function useMap(city: City, mapRef: MutableRefObject<HTMLElement 
       setMap(instance);
       isRenderedRef.current = true;
     }
-  }, [mapRef, map, latitude, longitude, zoom]);
+  }, [mapRef, map, city]);
 
   return map;
 }

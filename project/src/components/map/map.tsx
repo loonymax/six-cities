@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 import leaflet from 'leaflet';
-import { MapPin } from 'const';
+import { mapPins } from 'const';
 import { Offer, City } from 'mocks';
 import { useMap } from 'hooks';
 
@@ -9,21 +9,21 @@ interface Props {
   offers: Offer[];
 }
 
+const defaultCustomIcon = leaflet.icon({
+  iconUrl: mapPins.DefaultPin,
+  iconSize: [27, 39],
+  iconAnchor: [18, 39],
+});
+
+// const currentCustomIcon = leaflet.icon({
+//   iconUrl: mapPins.ActivePin,
+// iconSize: [27, 39],
+// iconAnchor: [18, 39],
+// });
+
 export default function Map({ city, offers }: Props) {
   const mapRef = useRef(null);
   const map = useMap(city, mapRef);
-
-  const defaultCustomIcon = leaflet.icon({
-    iconUrl: MapPin.DefaultPin,
-    iconSize: [27, 39],
-    iconAnchor: [18, 39],
-  });
-
-  // const currentCustomIcon = leaflet.icon({
-  //   iconUrl: MapPin.ActivePin,
-  //   iconSize: [40, 40],
-  //   iconAnchor: [20, 40],
-  // });
 
   useEffect(() => {
     if (map) {
@@ -38,7 +38,7 @@ export default function Map({ city, offers }: Props) {
           .addTo(map);
       });
     }
-  }, [map, offers, defaultCustomIcon]);
+  }, [map, offers]);
 
   return (
     <section className="cities__map map" style={{ width: '100%' }} ref={mapRef}></section>
