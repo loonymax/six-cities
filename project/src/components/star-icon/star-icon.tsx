@@ -1,7 +1,16 @@
-export default function StarIcon() {
+import { Rating } from 'mocks';
+
+interface Props {
+  rating: Rating;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+}
+
+export default function StarIcon({ rating, onChange }: Props) {
+  const { title, value, id } = rating;
+
   return (
-    <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
-      <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio" />
+    <label htmlFor={id} className="reviews__rating-label form__rating-label" title={title}>
+      <input className="form__rating-input visually-hidden" name="rating" value={value} id={id} type="radio" onChange={onChange} />
       <svg className="form__star-image" width="37" height="33">
         <use xlinkHref="#icon-star"></use>
       </svg>
