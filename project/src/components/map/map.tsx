@@ -38,7 +38,7 @@ export default function Map({ city, offers }: Props) {
           .addTo(map);
       });
     }
-  });
+  }, [map, offers, defaultCustomIcon]);
 
   return (
     <section className="cities__map map" style={{ width: '100%' }} ref={mapRef}></section>

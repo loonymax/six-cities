@@ -21,7 +21,7 @@ function App() {
             path={AppRoute.Offer} element={<OfferScreen />}
           />
           <Route
-            path='*'
+            path={AppRoute.NotFound}
             element={<Screen404 />}
           />
         </Route>

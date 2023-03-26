@@ -6,7 +6,7 @@ import 'leaflet/dist/leaflet.css';
 export default function useMap(city: City, mapRef: MutableRefObject<HTMLElement | null>): Map | null {
   const { latitude, longitude, zoom } = city;
   const [map, setMap] = useState<Map | null>(null);
-  const isRenderedRef = useRef<boolean>(false);
+  const isRenderedRef = useRef(false);
 
   useEffect(() => {
     if (mapRef.current !== null && !isRenderedRef.current) {
