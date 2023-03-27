@@ -1,11 +1,20 @@
 import { OffersList, Map } from 'components';
 import { Offer, city, offers } from 'mocks';
+import { useState } from 'react';
 
 interface Props {
   offersList: Offer[];
 }
 
 export default function CitiesHomeScreen({ offersList }: Props) {
+  const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
+
+  const onOfferHover = (offerId: number | null) => {
+    const currentOffer = offers.find((item) => item.id === offerId);
+
+    setSelectedOffer(currentOffer);
+  };
+
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -67,11 +76,11 @@ export default function CitiesHomeScreen({ offersList }: Props) {
               </ul>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              <OffersList offersList={offersList} />
+              <OffersList offersList={offersList} onOfferHover={onOfferHover}/>
             </div>
           </section>
           <div className="cities__right-section">
-            <Map city={city} offers={offers} />
+            <Map city={city} offers={offers} selectedOffer={selectedOffer} />
           </div>
         </div>
       </div>
