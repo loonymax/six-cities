@@ -1,48 +1,4 @@
-export interface Offer {
-  bedrooms: number;
-  city: {
-    location: {
-      latitude: number;
-      longitude: number;
-      zoom: number;
-    };
-    name: string;
-  };
-  description: string;
-  goods: [string];
-  host: {
-    avatarUrl: string;
-    id: number;
-    isPro: boolean;
-    name: string;
-  };
-  id: number;
-  images: [string];
-  isPremium: boolean;
-  location: {
-    latitude: number;
-    longitude: number;
-    zoom: number;
-  };
-  maxAdults: number;
-  previewImage: string;
-  price: number;
-  rating: number;
-  title: string;
-  type: string;
-}
-
-export interface Rating {
-  title: string;
-  value: number;
-  id: string;
-}
-
-export interface City {
-  latitude: number;
-  longitude: number;
-  zoom: number;
-}
+import { Offer, Rating, City, Review } from 'interfaces';
 
 export const ratingStars: Rating[] = [
   {
@@ -77,6 +33,19 @@ export const city: City = {
   'longitude': 4.895168,
   'zoom': 10,
 };
+
+export const reviews: Review[] = [
+  {
+    id: 1,
+    image: 'img/avatar-max.jpg',
+    userName: 'Max',
+    rating: '80%',
+    text: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
+    date: 'April 2019',
+    dateTime: '2019-04-24',
+  },
+];
+
 export const offers: Offer[] = [
   {
     'bedrooms': 3,

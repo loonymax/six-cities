@@ -8,3 +8,5 @@ export { default as OffersList } from './offers-list/offers-list';
 export { default as CommentForm } from './comment-form/comment-form';
 export { default as Premium } from './premium/premium';
 export { default as Map } from './map/map';
+export { default as ReviewsList } from './reviews-list/reviews-list';
+export { default as ReviewItem } from './review/review';

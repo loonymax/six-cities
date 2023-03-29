@@ -1,6 +1,8 @@
 import { OffersList, Map } from 'components';
-import { Offer, city, offers } from 'mocks';
+import { city, offers } from 'mocks';
+import { Offer } from 'interfaces';
 import { useState } from 'react';
+import { classNames } from 'const';
 
 interface Props {
   offersList: Offer[];
@@ -76,11 +78,11 @@ export default function CitiesHomeScreen({ offersList }: Props) {
               </ul>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              <OffersList offersList={offersList} onOfferHover={onOfferHover}/>
+              <OffersList offersList={offersList} onOfferHover={onOfferHover} className={classNames.HomeScreenOffersList}/>
             </div>
           </section>
           <div className="cities__right-section">
-            <Map city={city} offers={offers} selectedOffer={selectedOffer} />
+            <Map city={city} offers={offers} selectedOffer={selectedOffer} className={classNames.HomeScreemMap}/>
           </div>
         </div>
       </div>

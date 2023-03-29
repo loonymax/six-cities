@@ -2,7 +2,7 @@ import { CitiesHomeScreen, LoginScreen, OfferScreen, Screen404 } from 'pages';
 import { Layout } from 'components';
 import { AppRoute } from 'const';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { offers } from 'mocks/offers';
+import { offers } from 'mocks/mocks';
 
 function App() {
   return (

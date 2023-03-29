@@ -10,3 +10,9 @@ export const mapPins = {
   ActivePin: './img/pin-active.svg',
 };
 
+export const classNames = {
+  HomeScreenOffersList: 'cities__places-list places__list tabs__conten',
+  OfferScreenOffersList: 'near-places__list places__list',
+  HomeScreemMap: 'cities__map map',
+  OfferScreenMap: 'property__map map',
+};

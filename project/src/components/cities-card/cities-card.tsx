@@ -1,4 +1,4 @@
-import { Offer } from 'mocks/offers';
+import { Offer } from 'interfaces';
 import { Link } from 'react-router-dom';
 import { useState, MouseEvent } from 'react';
 import { AppRoute } from 'const';
