@@ -5,7 +5,7 @@ export enum AppRoute {
   NotFound = '*',
 }
 
-export enum MapPin {
-  DefaultPin = './img/pin.svg',
-  ActivePin = './img/pin-active.svg',
-}
+export const MapPins = {
+  DefaultPin: './img/pin.svg',
+  ActivePin: './img/pin-active.svg',
+};

@@ -24,7 +24,7 @@ export default function CommentForm() {
       <div className="reviews__rating-form form__rating">
         {ratingStars.map((item) => <StarIcon key={item.id} rating={item} onChange={handleFormChange}/>)}
       </div>
-      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" value={formData.review} onChange={handleFormChange} />
+      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" minLength={50} value={formData.review} onChange={handleFormChange} />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.

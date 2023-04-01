@@ -1,26 +1,27 @@
-import { Offer } from 'mocks/offers';
+import { Offer } from 'interfaces';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { MouseEvent } from 'react';
 import { AppRoute } from 'const';
 import { Premium } from 'components';
 
 interface Props {
   offer: Offer;
+  onOfferHover: (offerId: number | null) => void;
 }
 
-export default function CitiesCard({ offer }: Props) {
+export default function CitiesCard({ offer, onOfferHover }: Props) {
   const { title, price, rating, type, previewImage, isPremium, id } = offer;
-
-  const [, setActiveCard] = useState<Offer | null>();
 
   const ratingBar = `${rating * 100 / 5}%`;
 
-  const handleMouseEnter = () => {
-    setActiveCard(offer);
+  const handleMouseEnter = (event: MouseEvent<HTMLLIElement>) => {
+    event.preventDefault();
+    onOfferHover(id);
   };
 
-  const handleMouseLeave = () => {
-    setActiveCard(null);
+  const handleMouseLeave = (event: MouseEvent<HTMLLIElement>) => {
+    event.preventDefault();
+    onOfferHover(null);
   };
 
   return (

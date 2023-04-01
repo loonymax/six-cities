@@ -2,7 +2,6 @@ import { CitiesHomeScreen, LoginScreen, OfferScreen, Screen404 } from 'pages';
 import { Layout } from 'components';
 import { AppRoute } from 'const';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { offers } from 'mocks/offers';
 
 function App() {
   return (
@@ -11,7 +10,7 @@ function App() {
         <Route path={AppRoute.Main} element={<Layout />}>
           <Route
             path={AppRoute.Main}
-            element={<CitiesHomeScreen offersList={offers} />}
+            element={<CitiesHomeScreen />}
           />
           <Route
             path={AppRoute.Login}
