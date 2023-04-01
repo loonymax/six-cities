@@ -2,13 +2,9 @@ import { OffersList, Map } from 'components';
 import { city, offers } from 'mocks';
 import { Offer } from 'interfaces';
 import { useState } from 'react';
-import { classNames } from 'const';
 
-interface Props {
-  offersList: Offer[];
-}
 
-export default function CitiesHomeScreen({ offersList }: Props) {
+export default function CitiesHomeScreen() {
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
 
   const onOfferHover = (offerId: number | null) => {
@@ -60,7 +56,7 @@ export default function CitiesHomeScreen({ offersList }: Props) {
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{offersList.length} places to stay in Amsterdam</b>
+            <b className="places__found">{offers.length} places to stay in Amsterdam</b>
             <form className="places__sorting" action="/#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex={0}>
@@ -78,11 +74,11 @@ export default function CitiesHomeScreen({ offersList }: Props) {
               </ul>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              <OffersList offersList={offersList} onOfferHover={onOfferHover} className={classNames.HomeScreenOffersList}/>
+              <OffersList offersList={offers} onOfferHover={onOfferHover} className='cities__places-list places__list tabs__content' />
             </div>
           </section>
           <div className="cities__right-section">
-            <Map city={city} offers={offers} selectedOffer={selectedOffer} className={classNames.HomeScreemMap}/>
+            <Map city={city} offers={offers} selectedOffer={selectedOffer} className='cities__map map' />
           </div>
         </div>
       </div>

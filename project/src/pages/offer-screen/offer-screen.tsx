@@ -1,40 +1,42 @@
 import { CommentForm, ReviewsList, OffersList, Map } from 'components';
 import { reviews, offers, city } from 'mocks';
 import { Offer } from 'interfaces';
-import { classNames } from 'const';
 import { useState } from 'react';
 
 
 export default function OfferScreen() {
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
 
+  const offersList = offers.slice(0, 3);
+
   const onOfferHover = (offerId: number | null) => {
-    const currentOffer = offers.find((item) => item.id === offerId);
+    const currentOffer = offersList.find((item) => item.id === offerId);
 
     setSelectedOffer(currentOffer);
   };
+
   return (
     <main className="page__main page__main--property">
       <section className="property">
         <div className="property__gallery-container container">
           <div className="property__gallery">
             <div className="property__image-wrapper">
-              <img className="property__image" src="img/room.jpg" alt="Photo studio" />
+              <img className="property__image" src="img/room.jpg" alt="Studio" />
             </div>
             <div className="property__image-wrapper">
-              <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio" />
+              <img className="property__image" src="img/apartment-01.jpg" alt="Studio" />
             </div>
             <div className="property__image-wrapper">
-              <img className="property__image" src="img/apartment-02.jpg" alt="Photo studio" />
+              <img className="property__image" src="img/apartment-02.jpg" alt="Studio" />
             </div>
             <div className="property__image-wrapper">
-              <img className="property__image" src="img/apartment-03.jpg" alt="Photo studio" />
+              <img className="property__image" src="img/apartment-03.jpg" alt="Studio" />
             </div>
             <div className="property__image-wrapper">
-              <img className="property__image" src="img/studio-01.jpg" alt="Photo studio" />
+              <img className="property__image" src="img/studio-01.jpg" alt="Studio" />
             </div>
             <div className="property__image-wrapper">
-              <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio" />
+              <img className="property__image" src="img/apartment-01.jpg" alt="Studio" />
             </div>
           </div>
         </div>
@@ -134,12 +136,12 @@ export default function OfferScreen() {
             </section>
           </div>
         </div>
-        <Map city={city} offers={offers} selectedOffer={selectedOffer} className={classNames.OfferScreenMap}/>
+        <Map city={city} offers={offersList} selectedOffer={selectedOffer} className='property__map map' />
       </section>
       <div className="container">
         <section className="near-places places">
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
-          <OffersList offersList={offers} onOfferHover={onOfferHover} className={classNames.OfferScreenOffersList} />
+          <OffersList offersList={offersList} onOfferHover={onOfferHover} className='near-places__list places__list' />
         </section>
       </div>
     </main>

@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 import leaflet from 'leaflet';
-import { mapPins, classNames } from 'const';
+import { MapPins } from 'const';
 import { Offer, City } from 'interfaces';
 import { useMap } from 'hooks';
 
@@ -12,13 +12,13 @@ interface Props {
 }
 
 const defaultIcon = leaflet.icon({
-  iconUrl: mapPins.DefaultPin,
+  iconUrl: MapPins.DefaultPin,
   iconSize: [27, 39],
   iconAnchor: [18, 39],
 });
 
 const currentIcon = leaflet.icon({
-  iconUrl: mapPins.ActivePin,
+  iconUrl: MapPins.ActivePin,
   iconSize: [27, 39],
   iconAnchor: [18, 39],
 });
@@ -26,10 +26,6 @@ const currentIcon = leaflet.icon({
 export default function Map({ city, offers, selectedOffer, className }: Props) {
   const mapRef = useRef(null);
   const map = useMap(city, mapRef);
-
-  if (className === classNames.OfferScreenMap) {
-    offers = offers.slice(0, 3);
-  }
 
   useEffect(() => {
     if (map) {

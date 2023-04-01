@@ -1,6 +1,6 @@
 import { Offer } from 'interfaces';
 import { Link } from 'react-router-dom';
-import { useState, MouseEvent } from 'react';
+import { MouseEvent } from 'react';
 import { AppRoute } from 'const';
 import { Premium } from 'components';
 
@@ -12,22 +12,16 @@ interface Props {
 export default function CitiesCard({ offer, onOfferHover }: Props) {
   const { title, price, rating, type, previewImage, isPremium, id } = offer;
 
-  const [, setActiveCard] = useState<Offer | null>(); // это можно убирать?
-
   const ratingBar = `${rating * 100 / 5}%`;
 
   const handleMouseEnter = (event: MouseEvent<HTMLLIElement>) => {
     event.preventDefault();
     onOfferHover(id);
-
-    setActiveCard(offer); // это можно убирать?
   };
 
   const handleMouseLeave = (event: MouseEvent<HTMLLIElement>) => {
     event.preventDefault();
     onOfferHover(null);
-
-    setActiveCard(null); // это можно убирать?
   };
 
   return (
