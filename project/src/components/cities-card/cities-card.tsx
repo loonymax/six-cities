@@ -1,4 +1,4 @@
-import { Offer } from 'interfaces';
+import { Offer } from 'types';
 import { Link } from 'react-router-dom';
 import { MouseEvent } from 'react';
 import { AppRoute } from 'const';

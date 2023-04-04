@@ -1,4 +1,4 @@
-import { Rating } from 'interfaces';
+import { Rating } from 'types';
 
 interface Props {
   rating: Rating;

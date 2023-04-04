@@ -1,6 +1,6 @@
 import { CommentForm, ReviewsList, OffersList, Map } from 'components';
-import { reviews, offers, city } from 'mocks';
-import { Offer } from 'interfaces';
+import { reviews, offers } from 'mocks';
+import { Offer } from 'types';
 import { useState } from 'react';
 
 
@@ -136,7 +136,7 @@ export default function OfferScreen() {
             </section>
           </div>
         </div>
-        <Map city={city} offers={offersList} selectedOffer={selectedOffer} className='property__map map' />
+        <Map offers={offersList} selectedOffer={selectedOffer} className='property__map map' />
       </section>
       <div className="container">
         <section className="near-places places">

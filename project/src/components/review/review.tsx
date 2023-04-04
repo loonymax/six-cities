@@ -1,4 +1,4 @@
-import { Review } from 'interfaces';
+import { Review } from 'types';
 import { Fragment } from 'react';
 
 interface Props {
