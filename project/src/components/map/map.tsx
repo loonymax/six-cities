@@ -5,7 +5,6 @@ import { Offer } from 'types';
 import { useAppSelector, useMap } from 'hooks';
 
 interface Props {
-  offers: Offer[];
   selectedOffer: Offer | undefined;
   className: string;
 }
@@ -22,10 +21,11 @@ const currentIcon = leaflet.icon({
   iconAnchor: [18, 39],
 });
 
-export default function Map({ offers, selectedOffer, className }: Props) {
+export default function Map({ selectedOffer, className }: Props) {
   const mapRef = useRef(null);
+  const offers = useAppSelector((item) => item.offers);
 
-  const location = useAppSelector((item) => item.city.location);
+  const location = useAppSelector((item) => item.city);
   const map = useMap(location, mapRef);
 
   useEffect(() => {

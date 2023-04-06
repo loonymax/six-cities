@@ -1,11 +1,11 @@
-import { OffersList, Map, CitiesList } from 'components';
-import { offers } from 'mocks';
+import { OffersList, Map, Cities } from 'components';
 import { Offer } from 'types';
 import { useState } from 'react';
 import { useAppSelector } from 'hooks';
 
 export default function CitiesHomeScreen() {
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
+  const offers = useAppSelector((item) => item.offers);
 
   const onOfferHover = (offerId: number | null) => {
     const currentOffer = offers.find((item) => item.id === offerId);
@@ -21,7 +21,7 @@ export default function CitiesHomeScreen() {
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
         <section className="locations container">
-          <CitiesList />
+          <Cities />
         </section>
       </div>
       <div className="cities">
@@ -50,7 +50,7 @@ export default function CitiesHomeScreen() {
             </div>
           </section>
           <div className="cities__right-section">
-            <Map offers={offersList} selectedOffer={selectedOffer} className='cities__map map' />
+            <Map selectedOffer={selectedOffer} className='cities__map map' />
           </div>
         </div>
       </div>

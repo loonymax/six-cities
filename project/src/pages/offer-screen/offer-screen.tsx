@@ -1,11 +1,13 @@
 import { CommentForm, ReviewsList, OffersList, Map } from 'components';
-import { reviews, offers } from 'mocks';
+import { reviews } from 'mocks';
 import { Offer } from 'types';
 import { useState } from 'react';
+import { useAppSelector } from 'hooks';
 
 
 export default function OfferScreen() {
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
+  const offers = useAppSelector((item) => item.offers);
 
   const offersList = offers.slice(0, 3);
 
@@ -136,7 +138,7 @@ export default function OfferScreen() {
             </section>
           </div>
         </div>
-        <Map offers={offersList} selectedOffer={selectedOffer} className='property__map map' />
+        <Map selectedOffer={selectedOffer} className='property__map map' />
       </section>
       <div className="container">
         <section className="near-places places">

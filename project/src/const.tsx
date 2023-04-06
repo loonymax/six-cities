@@ -1,4 +1,4 @@
-import { CitiesName } from 'types';
+import { CityInfo } from 'types';
 
 export enum AppRoute {
   Main = '/',
@@ -12,16 +12,15 @@ export const MapPins = {
   ActivePin: './img/pin-active.svg',
 };
 
-export const defaultCity = {
+export const defaultCity: CityInfo = {
   'location': {
     'latitude': 48.8534100,
     'longitude': 2.3488000,
-    'zoom': 10
   },
   'name': 'Paris'
 };
 
-export const citiesNames: CitiesName[] = [
+export const cities: CityInfo[] = [
   {
     'name': 'Paris',
     'location': {

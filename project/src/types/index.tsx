@@ -1,2 +1,2 @@
-export type { Offer, Rating, City, Review } from './types';
-export type { CitiesName } from './cities-names';
+export type { Offer, Rating, Review, CityInfo } from './types';
+

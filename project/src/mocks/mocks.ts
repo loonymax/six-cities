@@ -1,4 +1,4 @@
-import { Offer, Rating, City, Review } from 'types';
+import { Offer, Rating, CityInfo, Review } from 'types';
 
 export const ratingStars: Rating[] = [
   {
@@ -28,10 +28,12 @@ export const ratingStars: Rating[] = [
   }
 ];
 
-export const city: City = {
-  'latitude': 52.370216,
-  'longitude': 4.895168,
-  'zoom': 10,
+export const city: CityInfo = {
+  name: 'Paris',
+  location: {
+    'latitude': 52.370216,
+    'longitude': 4.895168,
+  }
 };
 
 export const reviews: Review[] = [
