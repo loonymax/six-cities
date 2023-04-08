@@ -38,12 +38,6 @@ export interface Rating {
   id: string;
 }
 
-export interface City {
-  latitude: number;
-  longitude: number;
-  zoom: number;
-}
-
 export interface Review {
   id: number;
   image: string;
@@ -52,4 +46,12 @@ export interface Review {
   text: string;
   date: string;
   dateTime: string;
+}
+
+export interface CityInfo {
+  name: string;
+  location: {
+    latitude: number;
+    longitude: number;
+  };
 }

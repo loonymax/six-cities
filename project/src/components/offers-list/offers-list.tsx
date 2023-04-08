@@ -1,5 +1,5 @@
 import { CitiesCard } from 'components';
-import { Offer } from 'interfaces';
+import { Offer } from 'types';
 
 interface Props {
   offersList: Offer[];

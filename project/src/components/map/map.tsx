@@ -1,12 +1,10 @@
 import { useRef, useEffect } from 'react';
 import leaflet from 'leaflet';
 import { MapPins } from 'const';
-import { Offer, City } from 'interfaces';
-import { useMap } from 'hooks';
+import { Offer } from 'types';
+import { useAppSelector, useMap } from 'hooks';
 
 interface Props {
-  city: City;
-  offers: Offer[];
   selectedOffer: Offer | undefined;
   className: string;
 }
@@ -23,9 +21,12 @@ const currentIcon = leaflet.icon({
   iconAnchor: [18, 39],
 });
 
-export default function Map({ city, offers, selectedOffer, className }: Props) {
+export default function Map({ selectedOffer, className }: Props) {
   const mapRef = useRef(null);
-  const map = useMap(city, mapRef);
+  const offers = useAppSelector((item) => item.offers);
+
+  const location = useAppSelector((item) => item.city);
+  const map = useMap(location, mapRef);
 
   useEffect(() => {
     if (map) {

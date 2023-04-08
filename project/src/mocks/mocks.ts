@@ -1,4 +1,4 @@
-import { Offer, Rating, City, Review } from 'interfaces';
+import { Offer, Rating, CityInfo, Review } from 'types';
 
 export const ratingStars: Rating[] = [
   {
@@ -28,10 +28,12 @@ export const ratingStars: Rating[] = [
   }
 ];
 
-export const city: City = {
-  'latitude': 52.370216,
-  'longitude': 4.895168,
-  'zoom': 10,
+export const city: CityInfo = {
+  name: 'Paris',
+  location: {
+    'latitude': 52.370216,
+    'longitude': 4.895168,
+  }
 };
 
 export const reviews: Review[] = [
@@ -179,6 +181,265 @@ export const offers: Offer[] = [
       'name': 'Angelina'
     },
     'id': 4,
+    'images': [
+      'img/1.png'
+    ],
+    'isPremium': false,
+    'location': {
+      'latitude': 52.3909553943508,
+      'longitude': 4.939309666406198,
+      'zoom': 8
+    },
+    'maxAdults': 4,
+    'previewImage': 'img/apartment-03.jpg',
+    'price': 120,
+    'rating': 4.8,
+    'title': 'Beautiful & luxurious',
+    'type': 'apartment'
+  },
+  {
+    'bedrooms': 10,
+    'city': {
+      'location': {
+        'latitude': 52.3909553943508,
+        'longitude': 4.939309666406198,
+        'zoom': 10
+      },
+      'name': 'Dusseldorf'
+    },
+    'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    'goods': [
+      'Heating'
+    ],
+    'host': {
+      'avatarUrl': 'img/1.png',
+      'id': 5,
+      'isPro': true,
+      'name': 'Angelina'
+    },
+    'id': 5,
+    'images': [
+      'img/1.png'
+    ],
+    'isPremium': false,
+    'location': {
+      'latitude': 52.3909553943508,
+      'longitude': 4.939309666406198,
+      'zoom': 8
+    },
+    'maxAdults': 4,
+    'previewImage': 'img/apartment-03.jpg',
+    'price': 120,
+    'rating': 4.8,
+    'title': 'Beautiful & luxurious',
+    'type': 'apartment'
+  },
+  {
+    'bedrooms': 10,
+    'city': {
+      'location': {
+        'latitude': 52.3909553943508,
+        'longitude': 4.939309666406198,
+        'zoom': 10
+      },
+      'name': 'Brussels'
+    },
+    'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    'goods': [
+      'Heating'
+    ],
+    'host': {
+      'avatarUrl': 'img/1.png',
+      'id': 6,
+      'isPro': true,
+      'name': 'Angelina'
+    },
+    'id': 6,
+    'images': [
+      'img/1.png'
+    ],
+    'isPremium': false,
+    'location': {
+      'latitude': 52.3909553943508,
+      'longitude': 4.939309666406198,
+      'zoom': 8
+    },
+    'maxAdults': 4,
+    'previewImage': 'img/apartment-03.jpg',
+    'price': 120,
+    'rating': 4.8,
+    'title': 'Beautiful & luxurious',
+    'type': 'apartment'
+  },
+  {
+    'bedrooms': 10,
+    'city': {
+      'location': {
+        'latitude': 52.3909553943508,
+        'longitude': 4.939309666406198,
+        'zoom': 10
+      },
+      'name': 'Brussels'
+    },
+    'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Brussels.',
+    'goods': [
+      'Heating'
+    ],
+    'host': {
+      'avatarUrl': 'img/1.png',
+      'id': 7,
+      'isPro': true,
+      'name': 'Angelina'
+    },
+    'id': 7,
+    'images': [
+      'img/1.png'
+    ],
+    'isPremium': false,
+    'location': {
+      'latitude': 52.3909553943508,
+      'longitude': 4.939309666406198,
+      'zoom': 8
+    },
+    'maxAdults': 4,
+    'previewImage': 'img/apartment-03.jpg',
+    'price': 120,
+    'rating': 4.8,
+    'title': 'Beautiful & luxurious',
+    'type': 'apartment'
+  },
+  {
+    'bedrooms': 10,
+    'city': {
+      'location': {
+        'latitude': 52.3909553943508,
+        'longitude': 4.939309666406198,
+        'zoom': 10
+      },
+      'name': 'Brussels'
+    },
+    'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    'goods': [
+      'Heating'
+    ],
+    'host': {
+      'avatarUrl': 'img/1.png',
+      'id': 8,
+      'isPro': true,
+      'name': 'Angelina'
+    },
+    'id': 8,
+    'images': [
+      'img/1.png'
+    ],
+    'isPremium': false,
+    'location': {
+      'latitude': 52.3909553943508,
+      'longitude': 4.939309666406198,
+      'zoom': 8
+    },
+    'maxAdults': 4,
+    'previewImage': 'img/apartment-03.jpg',
+    'price': 120,
+    'rating': 4.8,
+    'title': 'Beautiful & luxurious',
+    'type': 'apartment'
+  },
+  {
+    'bedrooms': 10,
+    'city': {
+      'location': {
+        'latitude': 52.3909553943508,
+        'longitude': 4.939309666406198,
+        'zoom': 10
+      },
+      'name': 'Cologne'
+    },
+    'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    'goods': [
+      'Heating'
+    ],
+    'host': {
+      'avatarUrl': 'img/1.png',
+      'id': 9,
+      'isPro': true,
+      'name': 'Angelina'
+    },
+    'id': 9,
+    'images': [
+      'img/1.png'
+    ],
+    'isPremium': false,
+    'location': {
+      'latitude': 52.3909553943508,
+      'longitude': 4.939309666406198,
+      'zoom': 8
+    },
+    'maxAdults': 4,
+    'previewImage': 'img/apartment-03.jpg',
+    'price': 120,
+    'rating': 4.8,
+    'title': 'Beautiful & luxurious',
+    'type': 'apartment'
+  },
+  {
+    'bedrooms': 10,
+    'city': {
+      'location': {
+        'latitude': 52.3909553943508,
+        'longitude': 4.939309666406198,
+        'zoom': 10
+      },
+      'name': 'Paris'
+    },
+    'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    'goods': [
+      'Heating'
+    ],
+    'host': {
+      'avatarUrl': 'img/1.png',
+      'id': 10,
+      'isPro': true,
+      'name': 'Angelina'
+    },
+    'id': 10,
+    'images': [
+      'img/1.png'
+    ],
+    'isPremium': false,
+    'location': {
+      'latitude': 52.3909553943508,
+      'longitude': 4.939309666406198,
+      'zoom': 8
+    },
+    'maxAdults': 4,
+    'previewImage': 'img/apartment-03.jpg',
+    'price': 120,
+    'rating': 4.8,
+    'title': 'Beautiful & luxurious',
+    'type': 'apartment'
+  },
+  {
+    'bedrooms': 10,
+    'city': {
+      'location': {
+        'latitude': 52.3909553943508,
+        'longitude': 4.939309666406198,
+        'zoom': 10
+      },
+      'name': 'Paris'
+    },
+    'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    'goods': [
+      'Heating'
+    ],
+    'host': {
+      'avatarUrl': 'img/1.png',
+      'id': 11,
+      'isPro': true,
+      'name': 'Angelina'
+    },
+    'id': 11,
     'images': [
       'img/1.png'
     ],

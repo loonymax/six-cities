@@ -12,6 +12,12 @@
       "mocks": [
         "./mocks"
       ],
+      "types": [
+        "./types"
+      ],
+      "store": [
+        "./store"
+      ],
     },
     "target": "es2020",
     "lib": [
