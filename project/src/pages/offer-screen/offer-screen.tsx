@@ -2,12 +2,13 @@ import { CommentForm, ReviewsList, OffersList, Map } from 'components';
 import { reviews } from 'mocks';
 import { Offer } from 'types';
 import { useState } from 'react';
-import { useAppSelector } from 'hooks';
+import { useSelector } from 'react-redux';
+import { offersByCity } from 'store/selectors/selectors';
 
 
 export default function OfferScreen() {
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
-  const offers = useAppSelector((item) => item.offers);
+  const offers = useSelector(offersByCity);
 
   const offersList = offers.slice(0, 3);
 
