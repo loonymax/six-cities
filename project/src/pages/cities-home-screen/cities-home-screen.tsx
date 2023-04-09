@@ -1,21 +1,19 @@
 import { OffersList, Map, Cities, SortingForm } from 'components';
 import { Offer } from 'types';
 import { useState } from 'react';
-import { offersByCity } from 'store';
-import { useSelector } from 'react-redux';
 import { useAppSelector } from 'hooks';
 
 export default function CitiesHomeScreen() {
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
-  const offers = useSelector(offersByCity);
+  const offers = useAppSelector((state) => state.offers);
 
   const onOfferHover = (offerId: number | null) => {
-    const currentOffer = offers.find((item) => item.id === offerId);
+    const currentOffer = offers.find((offer) => offer.id === offerId);
 
     setSelectedOffer(currentOffer);
   };
 
-  const currentCity = useAppSelector((item) => item.city.city.name);
+  const currentCity = useAppSelector((state) => state.city.name);
 
   return (
     <main className="page__main page__main--index">
@@ -30,7 +28,7 @@ export default function CitiesHomeScreen() {
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">{offers.length} places to stay in {currentCity}</b>
-            < SortingForm />
+            <SortingForm />
             <div className="cities__places-list places__list tabs__content">
               <OffersList offersList={offers} onOfferHover={onOfferHover} className='cities__places-list places__list tabs__content' />
             </div>

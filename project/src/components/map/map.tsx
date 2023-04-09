@@ -3,8 +3,6 @@ import leaflet from 'leaflet';
 import { MapPins } from 'const';
 import { Offer } from 'types';
 import { useAppSelector, useMap } from 'hooks';
-import { useSelector } from 'react-redux';
-import { offersByCity } from 'store';
 
 interface Props {
   selectedOffer: Offer | undefined;
@@ -25,9 +23,9 @@ const currentIcon = leaflet.icon({
 
 export default function Map({ selectedOffer, className }: Props) {
   const mapRef = useRef(null);
-  const offers = useSelector(offersByCity);
+  const offers = useAppSelector((state) => state.offers);
 
-  const location = useAppSelector((item) => item.city.city);
+  const location = useAppSelector((state) => state.city);
   const map = useMap(location, mapRef);
 
   useEffect(() => {

@@ -1,10 +1,44 @@
-import { cityReducer } from './city/reducer/reducer';
-import { offersReducer } from './offers/reducer/reducer';
-import { combineReducers } from '@reduxjs/toolkit';
-import { sortReducer } from './sort/reducer';
+import { offers } from 'mocks';
+import { createReducer } from '@reduxjs/toolkit';
+import { changeCity, sortOffers } from 'store';
+import { defaultCity, sorting } from 'const';
 
-export default combineReducers({
-  city: cityReducer,
-  offers: offersReducer,
-  sort: sortReducer,
-});
+const initialOffers = offers.filter((item) => item.city.name === defaultCity.name);
+
+const initialState = {
+  offers: initialOffers,
+  city: defaultCity,
+  select: sorting.popular,
+};
+
+export const reducer = createReducer(
+  initialState, (builder) => {
+    builder
+      .addCase(changeCity, (state, actions) => {
+        if (actions.payload) {
+          state.city.name = actions.payload.name;
+          state.offers = offers.filter((item) => item.city.name === actions.payload.name);
+          state.city.location.latitude = actions.payload.location.latitude;
+          state.city.location.longitude = actions.payload.location.longitude;
+        }
+      })
+      .addCase(sortOffers, (state, actions) => {
+        if (actions.payload) {
+          state.select = actions.payload;
+
+          const offersList = offers.slice();
+          offersList.sort((a, b) => {
+            switch (state.select) {
+              case sorting.high:
+                return a.price - b.price;
+              case sorting.low:
+                return b.price - a.price;
+              case sorting.top:
+                return b.rating - a.rating;
+              default:
+                return 0;
+            }
+          });
+        }
+      });
+  });

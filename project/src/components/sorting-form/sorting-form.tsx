@@ -1,20 +1,13 @@
 import { sorting } from 'const';
 import { useAppSelector } from 'hooks';
-// import { sortOffers, /* sortToggler */ } from 'store/action';
 import classNames from 'classnames';
+import { useState } from 'react';
 
 const sortingValues = Object.values(sorting);
 
 export default function SortingForm() {
-  // const dispatch = useAppDispatch();
-  const select = useAppSelector((state) => state.sort.select);
-  const isOpened = useAppSelector((state) => state.sort.isOpened);
-
-  // не понимаю, как реализовать переключатель сортировки
-  // const handleToggler = (event: ) => {
-  //   dispatch(sortOffers(value));
-  //   dispatch(sortToggler(false));
-  // };
+  const [isOpened] = useState(false);
+  const select = useAppSelector((state) => state.select);
 
   return (
     <form className="places__sorting" action="/#" method="get">
