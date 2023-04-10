@@ -1,6 +1,6 @@
 import { offers } from 'mocks';
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, sortOffers } from 'store';
+import { changeCity, sortOffers } from './action';
 import { defaultCity, sorting } from 'const';
 
 const initialOffers = offers.filter((item) => item.city.name === defaultCity.name);
@@ -26,13 +26,12 @@ export const reducer = createReducer(
         if (actions.payload) {
           state.select = actions.payload;
 
-          const offersList = offers.slice();
-          offersList.sort((a, b) => {
+          state.offers.sort((a, b) => {
             switch (state.select) {
               case sorting.high:
-                return a.price - b.price;
-              case sorting.low:
                 return b.price - a.price;
+              case sorting.low:
+                return a.price - b.price;
               case sorting.top:
                 return b.rating - a.rating;
               default:
