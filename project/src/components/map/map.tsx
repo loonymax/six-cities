@@ -23,9 +23,9 @@ const currentIcon = leaflet.icon({
 
 export default function Map({ selectedOffer, className }: Props) {
   const mapRef = useRef(null);
-  const offers = useAppSelector((item) => item.offers);
+  const offers = useAppSelector((state) => state.offers);
 
-  const location = useAppSelector((item) => item.city);
+  const location = useAppSelector((state) => state.city);
   const map = useMap(location, mapRef);
 
   useEffect(() => {

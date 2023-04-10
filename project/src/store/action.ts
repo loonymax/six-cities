@@ -3,3 +3,5 @@ import { CityInfo } from 'types';
 
 export const changeCity = createAction<CityInfo>('city/changeCity');
 export const fillOffersList = createAction('offers/fillOffersList');
+export const sortOffers = createAction<string>('offers/sortOffers');
+

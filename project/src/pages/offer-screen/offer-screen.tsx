@@ -7,7 +7,7 @@ import { useAppSelector } from 'hooks';
 
 export default function OfferScreen() {
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
-  const offers = useAppSelector((item) => item.offers);
+  const offers = useAppSelector((state) => state.offers);
 
   const offersList = offers.slice(0, 3);
 

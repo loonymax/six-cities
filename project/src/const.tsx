@@ -20,6 +20,13 @@ export const defaultCity: CityInfo = {
   'name': 'Paris'
 };
 
+export const sorting = {
+  popular: 'Popular',
+  low: 'Price: low to high',
+  high: 'Price: high to low',
+  top: 'Top rated first',
+};
+
 export const cities: CityInfo[] = [
   {
     'name': 'Paris',

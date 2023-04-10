@@ -10,7 +10,7 @@ interface Props {
 export default function OffersList({ offersList, onOfferHover, className }: Props) {
   return (
     <div className={className}>
-      {offersList.map((item) => <CitiesCard key={item.id} offer={item} onOfferHover={onOfferHover} />)}
+      {offersList.map((offer) => <CitiesCard key={offer.id} offer={offer} onOfferHover={onOfferHover} />)}
     </div>
   );
 }

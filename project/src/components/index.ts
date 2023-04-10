@@ -12,3 +12,5 @@ export { default as ReviewsList } from './reviews-list/reviews-list';
 export { default as ReviewItem } from './review/review';
 export { default as Cities } from './cities/cities';
 export { default as City } from './city/city';
+export { default as SortingForm } from './sorting-form/sorting-form';
+
