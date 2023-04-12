@@ -1,12 +1,18 @@
-import { offers } from 'mocks';
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, sortOffers } from './action';
+import { changeCity, sortOffers, loadOffers } from './action';
 import { defaultCity, sorting } from 'const';
+import { Offer, CityInfo } from 'types';
 
-const initialOffers = offers.filter((item) => item.city.name === defaultCity.name);
+// const initialOffers = offers.filter((item) => item.city.name === defaultCity.name);
 
-const initialState = {
-  offers: initialOffers,
+interface initial {
+  offers: Offer[];
+  city: CityInfo;
+  select: string;
+}
+
+const initialState: initial = {
+  offers: [],
   city: defaultCity,
   select: sorting.popular,
 };
@@ -14,12 +20,17 @@ const initialState = {
 export const reducer = createReducer(
   initialState, (builder) => {
     builder
+      .addCase(loadOffers, (state, actions) => {
+        if (actions.payload) {
+          state.offers = actions.payload;
+        }
+      })
       .addCase(changeCity, (state, actions) => {
         if (actions.payload) {
           state.city.name = actions.payload.name;
-          state.offers = offers.filter((item) => item.city.name === actions.payload.name);
           state.city.location.latitude = actions.payload.location.latitude;
           state.city.location.longitude = actions.payload.location.longitude;
+          state.offers = state.offers.filter((item) => item.city.name === actions.payload.name);
         }
       })
       .addCase(sortOffers, (state, actions) => {

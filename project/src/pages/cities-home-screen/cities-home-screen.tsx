@@ -1,11 +1,17 @@
 import { OffersList, Map, Cities, SortingForm } from 'components';
 import { Offer } from 'types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAppSelector } from 'hooks';
+import { store } from 'store';
+import { loadOffers } from 'store';
 
 export default function CitiesHomeScreen() {
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
   const offers = useAppSelector((state) => state.offers);
+
+  useEffect(() => {
+    store.dispatch(loadOffers);
+  }, [selectedOffer]);
 
   const onOfferHover = (offerId: number | null) => {
     const currentOffer = offers.find((offer) => offer.id === offerId);

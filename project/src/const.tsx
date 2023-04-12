@@ -7,6 +7,12 @@ export enum AppRoute {
   NotFound = '*',
 }
 
+export enum APIRoute {
+  Offers = '/offer',
+  Login = '/login',
+  Logout = '/logout',
+}
+
 export const MapPins = {
   DefaultPin: './img/pin.svg',
   ActivePin: './img/pin-active.svg',
