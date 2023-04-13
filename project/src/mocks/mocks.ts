@@ -1,4 +1,4 @@
-import { Offer, Rating, CityInfo, Review } from 'types';
+import { Rating, CityInfo, Review } from 'types';
 
 export const ratingStars: Rating[] = [
   {

@@ -13,4 +13,5 @@ export { default as ReviewItem } from './review/review';
 export { default as Cities } from './cities/cities';
 export { default as City } from './city/city';
 export { default as SortingForm } from './sorting-form/sorting-form';
+export { default as Spinner } from './spinner/spinner';
 

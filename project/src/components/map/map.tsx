@@ -30,6 +30,8 @@ export default function Map({ selectedOffer, className }: Props) {
 
   useEffect(() => {
     if (map) {
+      const layerGroup = leaflet.layerGroup().addTo(map);
+
       offers.forEach((item) => {
         leaflet
           .marker({
@@ -40,12 +42,16 @@ export default function Map({ selectedOffer, className }: Props) {
               ? currentIcon
               : defaultIcon,
           })
-          .addTo(map);
+          .addTo(layerGroup);
       });
+
+      return () => {
+        map.removeLayer(layerGroup);
+      };
     }
   }, [map, offers, selectedOffer]);
 
   return (
-    <section className={className} style={{ width: '100%' }} ref={mapRef}></section>
+    <section className={className} style={{ width: '100%', height: '100%' }} ref={mapRef}></section>
   );
 }
