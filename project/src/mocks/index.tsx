@@ -1,1 +1,1 @@
-export { offers, ratingStars, city, reviews } from './mocks';
+export { ratingStars, city, reviews } from './mocks';

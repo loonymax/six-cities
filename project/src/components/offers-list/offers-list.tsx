@@ -1,5 +1,6 @@
-import { CitiesCard } from 'components';
+import { CitiesCard, Spinner } from 'components';
 import { Offer } from 'types';
+import { useAppSelector } from 'hooks';
 
 interface Props {
   offersList: Offer[];
@@ -8,9 +9,13 @@ interface Props {
 }
 
 export default function OffersList({ offersList, onOfferHover, className }: Props) {
+  const isOffersLoaded = useAppSelector((state) => state.isOffersLoaded);
+
   return (
     <div className={className}>
-      {offersList.map((offer) => <CitiesCard key={offer.id} offer={offer} onOfferHover={onOfferHover} />)}
+      {isOffersLoaded ?
+        <Spinner /> :
+        offersList.map((offer) => <CitiesCard key={offer.id} offer={offer} onOfferHover={onOfferHover} />)}
     </div>
   );
 }
