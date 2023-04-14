@@ -1,26 +1,23 @@
-import { Logo } from 'components';
+import { Logo, LoggedNav, NoLoggedNav } from 'components';
+import { useEffect } from 'react';
+import { checkAutn } from 'store';
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { AuthorizationStatus } from 'const';
 
 export default function Header() {
+  const dispatch = useAppDispatch();
+  const auth = useAppSelector((state) => state.authorizationStatus);
+
+  useEffect(() => {
+    dispatch(checkAutn());
+  }, [dispatch]);
+
   return (
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
           <Logo />
-          <nav className="header__nav">
-            <ul className="header__nav-list">
-              <li className="header__nav-item user">
-                <div className="header__nav-profile">
-                  <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                  <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                </div>
-              </li>
-              <li className="header__nav-item">
-                <a className="header__nav-link" href="#">
-                  <span className="header__signout">Sign out</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+          {auth === AuthorizationStatus.Auth ? <LoggedNav /> : <NoLoggedNav />}
         </div>
       </div>
     </header>

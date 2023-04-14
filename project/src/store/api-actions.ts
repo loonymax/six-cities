@@ -1,10 +1,10 @@
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { State, AppDispatch, Offer } from 'types';
-import { loadOffers, setIsOffersLoaded } from './action';
-import { APIRoute } from 'const';
+import { loadOffers, setIsOffersLoaded, changeAuthorizationStatus } from './action';
+import { APIRoute, AuthorizationStatus } from 'const';
 
-export const fetchQuestionAction = createAsyncThunk<void, undefined, {
+export const fetchOffersAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -18,3 +18,22 @@ export const fetchQuestionAction = createAsyncThunk<void, undefined, {
   },
 );
 
+const { log } = console;
+
+export const checkAutn = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchLogin',
+  async (_arg, { dispatch, extra: api }) => {
+    try {
+      const { data } = await api.get<AuthorizationStatus>(APIRoute.Login);
+      log(data);
+      dispatch(changeAuthorizationStatus(AuthorizationStatus.Auth));
+    } catch {
+      dispatch(changeAuthorizationStatus(AuthorizationStatus.NoAuth));
+      log('NoAuth');
+    }
+  }
+);
