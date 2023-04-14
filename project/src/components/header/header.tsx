@@ -17,7 +17,7 @@ export default function Header() {
       <div className="container">
         <div className="header__wrapper">
           <Logo />
-          {auth === AuthorizationStatus.Auth ? <LoggedNav /> : <NoLoggedNav />}
+          {auth === AuthorizationStatus.Auth ? <LoggedNav userName='Oliver.conner@gmail.com' /> : <NoLoggedNav />}
         </div>
       </div>
     </header>

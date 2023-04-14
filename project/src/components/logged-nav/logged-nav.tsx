@@ -1,11 +1,15 @@
-export default function LoggedNav() {
+interface Props {
+  userName: string;
+}
+
+export default function LoggedNav({ userName }: Props) {
   return (
     <nav className="header__nav">
       <ul className="header__nav-list">
         <li className="header__nav-item user">
           <div className="header__nav-profile">
             <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-            <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+            <span className="header__user-name user__name">{userName}</span>
           </div>
         </li>
         <li className="header__nav-item">
