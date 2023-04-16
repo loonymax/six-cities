@@ -14,4 +14,6 @@ export { default as Cities } from './cities/cities';
 export { default as City } from './city/city';
 export { default as SortingForm } from './sorting-form/sorting-form';
 export { default as Spinner } from './spinner/spinner';
+export { default as NoLoggedNav } from './no-logged-nav/no-logged-nav';
+export { default as LoggedNav } from './logged-nav/logged-nav';
 

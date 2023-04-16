@@ -13,6 +13,12 @@ export enum APIRoute {
   Logout = '/logout',
 }
 
+export enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
+}
+
 export const MapPins = {
   DefaultPin: './img/pin.svg',
   ActivePin: './img/pin-active.svg',

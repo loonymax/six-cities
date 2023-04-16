@@ -1,1 +1,2 @@
-export {createAPI} from './api';
+export { createAPI } from './api';
+export { getToken, saveToken, dropToken } from './token';

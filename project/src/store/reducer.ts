@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, sortOffers, loadOffers } from './action';
-import { defaultCity, sorting } from 'const';
+import { changeCity, sortOffers, loadOffers, changeAuthorizationStatus } from './action';
+import { defaultCity, sorting, AuthorizationStatus } from 'const';
 import { Offer, CityInfo } from 'types';
 
 interface initial {
@@ -9,6 +9,7 @@ interface initial {
   city: CityInfo;
   select: string;
   isOffersLoaded: boolean;
+  authorizationStatus: AuthorizationStatus;
 }
 
 const initialState: initial = {
@@ -17,14 +18,17 @@ const initialState: initial = {
   city: defaultCity,
   select: sorting.popular,
   isOffersLoaded: false,
+  authorizationStatus: AuthorizationStatus.Unknown,
 };
 
 export const reducer = createReducer(
   initialState, (builder) => {
     builder
       .addCase(loadOffers, (state, actions) => {
-        state.OFFERS = actions.payload;
-        state.offers = state.OFFERS.filter((offer) => offer.city.name === state.city.name);
+        if (actions.payload) {
+          state.OFFERS = actions.payload;
+          state.offers = state.OFFERS.filter((offer) => offer.city.name === state.city.name);
+        }
       })
       .addCase(changeCity, (state, actions) => {
         if (actions.payload) {
@@ -51,5 +55,8 @@ export const reducer = createReducer(
             }
           });
         }
+      })
+      .addCase(changeAuthorizationStatus, (state, actions) => {
+        state.authorizationStatus = actions.payload;
       });
   });

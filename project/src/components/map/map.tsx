@@ -52,6 +52,6 @@ export default function Map({ selectedOffer, className }: Props) {
   }, [map, offers, selectedOffer]);
 
   return (
-    <section className={className} style={{ width: '100%', height: '100%' }} ref={mapRef}></section>
+    <section className={className} style={{ width: '100%' }} ref={mapRef}></section>
   );
 }
