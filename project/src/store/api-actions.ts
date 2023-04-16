@@ -1,7 +1,7 @@
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { State, AppDispatch, Offer, AuthData, UserData } from 'types';
-import { loadOffers, setIsOffersLoaded, changeAuthorizationStatus } from './action';
+import { loadOffers, setIsOffersLoaded, changeAuthorizationStatus, loadOffer } from './action';
 import { APIRoute, AuthorizationStatus } from 'const';
 import { dropToken, saveToken } from 'services';
 
@@ -19,9 +19,19 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
   },
 );
 
-const { log } = console;
+export const fetchOffer = createAsyncThunk<void, Offer['id'], {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchOffer',
+  async (id, { dispatch, extra: api }) => {
+    const { data } = await api.get<Offer>(APIRoute.Offer.replace(/id/, `${id}`));
+    dispatch(loadOffer(data));
+  },
+);
 
-export const checkAutn = createAsyncThunk<void, undefined, {
+export const checkAuth = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -29,12 +39,10 @@ export const checkAutn = createAsyncThunk<void, undefined, {
   'data/fetchLogin',
   async (_arg, { dispatch, extra: api }) => {
     try {
-      const { data } = await api.get<AuthorizationStatus>(APIRoute.Login);
-      log(data);
+      await api.get<AuthorizationStatus>(APIRoute.Login);
       dispatch(changeAuthorizationStatus(AuthorizationStatus.Auth));
     } catch {
       dispatch(changeAuthorizationStatus(AuthorizationStatus.NoAuth));
-      log('NoAuth');
     }
   }
 );
@@ -58,9 +66,10 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   extra: AxiosInstance;
 }>(
   'user/logout',
-  async (_arg, {dispatch, extra: api}) => {
+  async (_arg, { dispatch, extra: api }) => {
     await api.delete(APIRoute.Logout);
     dropToken();
     dispatch(changeAuthorizationStatus(AuthorizationStatus.NoAuth));
   },
 );
+

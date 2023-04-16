@@ -1,13 +1,18 @@
 import { CommentForm, ReviewsList, OffersList, Map } from 'components';
 import { reviews } from 'mocks';
 import { Offer } from 'types';
-import { useState } from 'react';
-import { useAppSelector } from 'hooks';
+import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { fetchOffer } from 'store';
+import { useParams } from 'react-router-dom';
 
 
 export default function OfferScreen() {
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
+  const { id } = useParams();
+  const dispatch = useAppDispatch();
   const offers = useAppSelector((state) => state.offers);
+  const offer = useAppSelector((state) => state.offerPage);
 
   const offersList = offers.slice(0, 3);
 
@@ -17,44 +22,36 @@ export default function OfferScreen() {
     setSelectedOffer(currentOffer);
   };
 
+  useEffect(() => {
+    dispatch(fetchOffer(Number(id)));
+  }, [dispatch, id]);
+
   return (
     <main className="page__main page__main--property">
       <section className="property">
         <div className="property__gallery-container container">
           <div className="property__gallery">
-            <div className="property__image-wrapper">
-              <img className="property__image" src="img/room.jpg" alt="Studio" />
-            </div>
-            <div className="property__image-wrapper">
-              <img className="property__image" src="img/apartment-01.jpg" alt="Studio" />
-            </div>
-            <div className="property__image-wrapper">
-              <img className="property__image" src="img/apartment-02.jpg" alt="Studio" />
-            </div>
-            <div className="property__image-wrapper">
-              <img className="property__image" src="img/apartment-03.jpg" alt="Studio" />
-            </div>
-            <div className="property__image-wrapper">
-              <img className="property__image" src="img/studio-01.jpg" alt="Studio" />
-            </div>
-            <div className="property__image-wrapper">
-              <img className="property__image" src="img/apartment-01.jpg" alt="Studio" />
-            </div>
+            {offer?.images.slice(0, 6).map((image) => (
+              <div key={image} className="property__image-wrapper">
+                <img className="property__image" src={image} alt="Studio" />
+              </div>
+            ))}
           </div>
         </div>
         <div className="property__container container">
           <div className="property__wrapper">
-            <div className="property__mark">
-              <span>Premium</span>
-            </div>
+            {offer?.isPremium ? (
+              <div className="property__mark">
+                <span>Premium</span>
+              </div>) : null}
             <div className="property__name-wrapper">
               <h1 className="property__name">
-                Beautiful &amp; luxurious studio at great location
+                {offer?.description}
               </h1>
             </div>
             <div className="property__rating rating">
               <div className="property__stars rating__stars">
-                <span style={{ width: '80%' }}></span>
+                <span style={{ width: offer?.rating}}></span>
                 <span className="visually-hidden">Rating</span>
               </div>
               <span className="property__rating-value rating__value">4.8</span>

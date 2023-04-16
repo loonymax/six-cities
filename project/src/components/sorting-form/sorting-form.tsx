@@ -8,7 +8,7 @@ const sortingValues = Object.values(sorting);
 
 export default function SortingForm() {
   const [isOpen, setIsOpen] = useState(false);
-  const select = useAppSelector((state) => state.select);
+  const select = useAppSelector((state) => state.sorting);
   const dispatch = useAppDispatch();
 
   const handleSortingChange = (event: MouseEvent<HTMLElement>) => {

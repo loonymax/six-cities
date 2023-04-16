@@ -1,13 +1,14 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, sortOffers, loadOffers, changeAuthorizationStatus } from './action';
+import { changeCity, sortOffers, loadOffers, loadOffer, changeAuthorizationStatus } from './action';
 import { defaultCity, sorting, AuthorizationStatus } from 'const';
 import { Offer, CityInfo } from 'types';
 
 interface initial {
   OFFERS: Offer[];
   offers: Offer[];
+  offerPage: Offer | null;
   city: CityInfo;
-  select: string;
+  sorting: string;
   isOffersLoaded: boolean;
   authorizationStatus: AuthorizationStatus;
 }
@@ -15,8 +16,9 @@ interface initial {
 const initialState: initial = {
   OFFERS: [],
   offers: [],
+  offerPage: null,
   city: defaultCity,
-  select: sorting.popular,
+  sorting: sorting.popular,
   isOffersLoaded: false,
   authorizationStatus: AuthorizationStatus.Unknown,
 };
@@ -40,10 +42,10 @@ export const reducer = createReducer(
       })
       .addCase(sortOffers, (state, actions) => {
         if (actions.payload) {
-          state.select = actions.payload;
+          state.sorting = actions.payload;
 
           state.offers.sort((a, b) => {
-            switch (state.select) {
+            switch (state.sorting) {
               case sorting.high:
                 return b.price - a.price;
               case sorting.low:
@@ -55,6 +57,9 @@ export const reducer = createReducer(
             }
           });
         }
+      })
+      .addCase(loadOffer, (state, actions) => {
+        state.offerPage = actions.payload;
       })
       .addCase(changeAuthorizationStatus, (state, actions) => {
         state.authorizationStatus = actions.payload;
