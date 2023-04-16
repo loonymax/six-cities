@@ -16,7 +16,7 @@ interface initial {
 const initialState: initial = {
   OFFERS: [],
   offers: [],
-  offerPage: null,
+  offerPage: null ,
   city: defaultCity,
   sorting: sorting.popular,
   isOffersLoaded: false,
