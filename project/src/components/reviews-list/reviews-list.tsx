@@ -1,10 +1,19 @@
 import { ReviewItem } from 'components';
-import { reviews } from 'mocks';
+import { Fragment } from 'react';
+import { Comment } from 'types';
 
-export default function ReviewsList() {
+interface Props {
+  comments: Comment[];
+}
+
+export default function ReviewsList({ comments }: Props) {
+
   return (
-    <ul className="reviews__list">
-      {reviews.map((item) => <li key={item.id} className="reviews__item"><ReviewItem review={item} /></li>)}
-    </ul>
+    <Fragment>
+      <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
+      <ul className="reviews__list">
+        {comments.map((comment) => <li key={comment.id} className="reviews__item"><ReviewItem review={comment} /></li>)}
+      </ul>
+    </Fragment>
   );
 }

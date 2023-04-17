@@ -1,12 +1,14 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, sortOffers, loadOffers, loadOffer, changeAuthorizationStatus } from './action';
+import { changeCity, sortOffers, loadOffers, loadOffer, changeAuthorizationStatus, loadNearbyOffers, loadOfferComments } from './action';
 import { defaultCity, sorting, AuthorizationStatus } from 'const';
-import { Offer, CityInfo } from 'types';
+import { Offer, CityInfo, Comment } from 'types';
 
 interface initial {
   OFFERS: Offer[];
   offers: Offer[];
   offerPage: Offer | null;
+  nearbyOffers: Offer[];
+  offerComments: Comment[];
   city: CityInfo;
   sorting: string;
   isOffersLoaded: boolean;
@@ -16,7 +18,9 @@ interface initial {
 const initialState: initial = {
   OFFERS: [],
   offers: [],
-  offerPage: null ,
+  offerPage: null,
+  nearbyOffers: [],
+  offerComments: [],
   city: defaultCity,
   sorting: sorting.popular,
   isOffersLoaded: false,
@@ -39,6 +43,12 @@ export const reducer = createReducer(
           state.city.location.longitude = actions.payload.location.longitude;
           state.offers = state.OFFERS.filter((offer) => offer.city.name === state.city.name);
         }
+      })
+      .addCase(loadNearbyOffers, (state, actions) => {
+        state.nearbyOffers = actions.payload;
+      })
+      .addCase(loadOfferComments, (state, actions) => {
+        state.offerComments = actions.payload;
       })
       .addCase(sortOffers, (state, actions) => {
         if (actions.payload) {

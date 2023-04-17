@@ -11,6 +11,8 @@ export default function OfferScreen() {
   const dispatch = useAppDispatch();
 
   const offer = useAppSelector((state) => state.offerPage);
+  const nearbyOffers = useAppSelector((state) => state.nearbyOffers);
+  const offerComments = useAppSelector((state) => state.offerComments);
   const isOffersLoaded = useAppSelector((state) => state.isOffersLoaded);
 
   useEffect(() => {
@@ -28,6 +30,6 @@ export default function OfferScreen() {
   }
 
   return (
-    <OfferItem offerData={offer} />
+    <OfferItem offerData={offer} nearbyOffers={nearbyOffers} offerComments={offerComments} />
   );
 }

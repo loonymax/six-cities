@@ -1,7 +1,7 @@
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { State, AppDispatch, Offer, AuthData, UserData } from 'types';
-import { loadOffers, setIsOffersLoaded, changeAuthorizationStatus, loadOffer } from './action';
+import { State, AppDispatch, Offer, AuthData, UserData, Comment } from 'types';
+import { loadOffers, setIsOffersLoaded, changeAuthorizationStatus, loadOffer, loadNearbyOffers, loadOfferComments } from './action';
 import { APIRoute, AuthorizationStatus } from 'const';
 import { dropToken, saveToken } from 'services';
 
@@ -27,10 +27,16 @@ export const fetchOffer = createAsyncThunk<void, Offer['id'], {
   'data/fetchOffer',
   async (id, { dispatch, extra: api }) => {
     dispatch(setIsOffersLoaded(true));
-    const { data } = await api.get<Offer>(APIRoute.Offer.replace(/id/, `${id}`));
+    const [offerData, nearbyOffers, offerComments] = await Promise.all([
+      api.get<Offer>(APIRoute.Offer.replace(/id/, `${id}`)),
+      api.get<Offer[]>(APIRoute.NearbyOffers.replace(/id/, `${id}`)),
+      api.get<Comment[]>(APIRoute.OfferComments.replace(/id/, `${id}`))
+    ]);
     dispatch(setIsOffersLoaded(false));
-    dispatch(loadOffer(data));
-  },
+    dispatch(loadOffer(offerData.data));
+    dispatch(loadNearbyOffers(nearbyOffers.data));
+    dispatch(loadOfferComments(offerComments.data));
+  }
 );
 
 export const checkAuth = createAsyncThunk<void, undefined, {

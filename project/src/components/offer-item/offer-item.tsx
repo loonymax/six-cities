@@ -1,23 +1,19 @@
 import { CommentForm, ReviewsList, OffersList, Map } from 'components';
-import { useAppSelector } from 'hooks';
-import { reviews } from 'mocks';
 import { useState } from 'react';
-import { Offer } from 'types';
+import { Comment, Offer } from 'types';
 
 interface Props {
   offerData: Offer;
+  nearbyOffers: Offer[];
+  offerComments: Comment[] | null;
 }
 
-export default function OfferItem({ offerData }: Props) {
-  const { price, rating, type, isPremium, images, goods, description, maxAdults, bedrooms } = offerData;
+export default function OfferItem({ offerData, nearbyOffers, offerComments }: Props) {
+  const { price, rating, type, isPremium, images, goods, title, maxAdults, bedrooms, description, host: { avatarUrl, isPro, name } } = offerData;
 
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
-  const offers = useAppSelector((state) => state.offers);
-
-  const offersList = offers.slice(0, 3);
-
   const onOfferHover = (offerId: number | null) => {
-    const currentOffer = offersList.find((item) => item.id === offerId);
+    const currentOffer = nearbyOffers.find((item) => item.id === offerId);
 
     setSelectedOffer(currentOffer);
   };
@@ -42,7 +38,7 @@ export default function OfferItem({ offerData }: Props) {
               </div>) : null}
             <div className="property__name-wrapper">
               <h1 className="property__name">
-                {description}
+                {title}
               </h1>
             </div>
             <div className="property__rating rating">
@@ -54,7 +50,7 @@ export default function OfferItem({ offerData }: Props) {
             </div>
             <ul className="property__features">
               <li className="property__feature property__feature--entire">
-                {type}
+                {type.charAt(0).toUpperCase() + type.slice(1)}
               </li>
               <li className="property__feature property__feature--bedrooms">
                 {bedrooms} Bedrooms
@@ -80,27 +76,22 @@ export default function OfferItem({ offerData }: Props) {
               <h2 className="property__host-title">Meet the host</h2>
               <div className="property__host-user user">
                 <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                  <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar" />
+                  <img className="property__avatar user__avatar" src={avatarUrl} width="74" height="74" alt="Host avatar" />
                 </div>
                 <span className="property__user-name">
-                  Angelina
+                  {name}
                 </span>
-                <span className="property__user-status">
-                  Pro
-                </span>
+                {isPro ? (<span className="property__user-status">Pro</span>) : null}
               </div>
               <div className="property__description">
                 <p className="property__text">
-                  A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-                </p>
-                <p className="property__text">
-                  An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
+                  {description}
                 </p>
               </div>
             </div>
             <section className="property__reviews reviews">
-              <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
-              <ReviewsList />
+              {offerComments ? (
+                <ReviewsList comments={offerComments} />) : null}
               <CommentForm />
             </section>
           </div>
@@ -110,7 +101,7 @@ export default function OfferItem({ offerData }: Props) {
       <div className="container">
         <section className="near-places places">
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
-          <OffersList offersList={offersList} onOfferHover={onOfferHover} className='near-places__list places__list' />
+          <OffersList offersList={nearbyOffers} onOfferHover={onOfferHover} className='near-places__list places__list' />
         </section>
       </div>
     </main>
