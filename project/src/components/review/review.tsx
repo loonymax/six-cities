@@ -29,7 +29,7 @@ export default function ReviewItem({ review }: Props) {
           <img className="reviews__avatar user__avatar" src={avatarUrl} width="54" height="54" alt="Reviews avatar" />
         </div>
         <span className="reviews__user-name">{name}</span>
-        {isPro ? (<span className="reviews__user-status">Pro</span>) : null}
+        {isPro ? (<span className="property__user-status">Pro</span>) : null}
       </div>
       <div className="reviews__info">
         <div className="reviews__rating rating">

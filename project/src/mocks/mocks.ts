@@ -1,4 +1,4 @@
-import { Rating, CityInfo, Review } from 'types';
+import { Rating, CityInfo } from 'types';
 
 export const ratingStars: Rating[] = [
   {
@@ -36,19 +36,6 @@ export const city: CityInfo = {
   }
 };
 
-export const reviews: Review[] = [
-  {
-    id: 1,
-    image: 'img/avatar-max.jpg',
-    userName: 'Max',
-    rating: '80%',
-    text: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
-    date: 'April 2019',
-    dateTime: '2019-04-24',
-  },
-];
-
-// export const offers: Offer[] = [
 //   {
 //     'bedrooms': 3,
 //     'city': {

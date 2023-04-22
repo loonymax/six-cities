@@ -1,0 +1,25 @@
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  column-gap: 10px;
+}
+
+.spinner-text {
+  text-align: center;
+}
+
+.infinity-1 {
+  width:90px;
+  height:14px;
+  background:
+    radial-gradient(circle 7px at bottom, #000 95%, #fff ) 0 0,
+    radial-gradient(circle 7px at top   , #000 95%, #fff ) 0 100%;
+  background-size:calc(100%/4) 50%;
+  background-repeat:repeat-x;
+  animation:i1 1s infinite;
+}
+
+@keyframes i1 {
+  80%,100% {background-position: calc(100%/3) 0,calc(100%/-3) 100%}
+}

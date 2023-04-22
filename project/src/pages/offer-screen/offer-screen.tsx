@@ -14,12 +14,13 @@ export default function OfferScreen() {
   const nearbyOffers = useAppSelector((state) => state.nearbyOffers);
   const offerComments = useAppSelector((state) => state.offerComments);
   const isOffersLoaded = useAppSelector((state) => state.isOffersLoaded);
+  const isNewReviewLoaded = useAppSelector((state) => state.isNewReviewLoaded);
 
   useEffect(() => {
     if (id) {
       dispatch(fetchOffer(Number(id)));
     }
-  }, [dispatch, id]);
+  }, [dispatch, id, isNewReviewLoaded]);
 
   if (!offer || isOffersLoaded) {
     return <Spinner />;

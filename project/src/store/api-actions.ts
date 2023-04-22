@@ -1,7 +1,7 @@
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { State, AppDispatch, Offer, AuthData, UserData, Comment } from 'types';
-import { loadOffers, setIsOffersLoaded, changeAuthorizationStatus, loadOffer, loadNearbyOffers, loadOfferComments } from './action';
+import { State, AppDispatch, Offer, AuthData, UserData, NewComment, Comment } from 'types';
+import { loadOffers, setIsOffersLoaded, changeAuthorizationStatus, loadOffer, loadNearbyOffers, loadOfferComments, setIsNewReviewLoaded } from './action';
 import { APIRoute, AuthorizationStatus } from 'const';
 import { dropToken, saveToken } from 'services';
 
@@ -81,3 +81,20 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   },
 );
 
+export const sendReviewAction = createAsyncThunk<void,
+  {
+    offerId: Offer['id'];
+    comment: NewComment['comment'];
+    rating: NewComment['rating'];
+  },
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }>(
+    'user/sendReview',
+    async ({ comment, rating, offerId }, { dispatch, extra: api }) => {
+      await api.post<NewComment>(APIRoute.OfferComments.replace(/id/, `${offerId}`), { comment, rating });
+      dispatch(setIsNewReviewLoaded(true));
+    }
+  );

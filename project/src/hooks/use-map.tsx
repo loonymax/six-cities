@@ -14,7 +14,7 @@ export function useMap(city: CityInfo, mapRef: MutableRefObject<HTMLElement | nu
           lat: city.location.latitude,
           lng: city.location.longitude,
         },
-        zoom: 10,
+        zoom: 13,
       });
 
       leaflet

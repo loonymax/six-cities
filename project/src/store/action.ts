@@ -7,6 +7,7 @@ export const loadOffer = createAction<Offer>('data/loadOffer');
 export const loadNearbyOffers = createAction<Offer[]>('data/loadNearbyOffers');
 export const loadOfferComments = createAction<Comment[]>('data/loadOfferComments');
 export const setIsOffersLoaded = createAction<boolean>('data/setIsOffersLoaded');
+export const setIsNewReviewLoaded = createAction<boolean>('data/setIsNewReviewLoaded');
 
 export const changeCity = createAction<CityInfo>('city/changeCity');
 

@@ -9,7 +9,7 @@ interface Props {
 }
 
 export default function OfferItem({ offerData, nearbyOffers, offerComments }: Props) {
-  const { price, rating, type, isPremium, images, goods, title, maxAdults, bedrooms, description, host: { avatarUrl, isPro, name } } = offerData;
+  const { id, price, rating, type, isPremium, images, goods, title, maxAdults, bedrooms, description, host: { avatarUrl, isPro, name } } = offerData;
 
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
   const onOfferHover = (offerId: number | null) => {
@@ -92,7 +92,7 @@ export default function OfferItem({ offerData, nearbyOffers, offerComments }: Pr
             <section className="property__reviews reviews">
               {offerComments ? (
                 <ReviewsList comments={offerComments} />) : null}
-              <CommentForm />
+              <CommentForm offerId={id}/>
             </section>
           </div>
         </div>

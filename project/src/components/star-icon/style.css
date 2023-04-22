@@ -1,0 +1,3 @@
+.form__rating-input:checked ~ .form__star-image {
+  fill: #ff9000;
+}

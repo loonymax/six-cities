@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, sortOffers, loadOffers, loadOffer, changeAuthorizationStatus, loadNearbyOffers, loadOfferComments } from './action';
+import { changeCity, sortOffers, loadOffers, loadOffer, changeAuthorizationStatus, loadNearbyOffers, loadOfferComments, setIsNewReviewLoaded, setIsOffersLoaded } from './action';
 import { defaultCity, sorting, AuthorizationStatus } from 'const';
 import { Offer, CityInfo, Comment } from 'types';
 
@@ -13,6 +13,7 @@ interface initial {
   sorting: string;
   isOffersLoaded: boolean;
   authorizationStatus: AuthorizationStatus;
+  isNewReviewLoaded: boolean;
 }
 
 const initialState: initial = {
@@ -25,6 +26,7 @@ const initialState: initial = {
   sorting: sorting.popular,
   isOffersLoaded: false,
   authorizationStatus: AuthorizationStatus.Unknown,
+  isNewReviewLoaded: false,
 };
 
 export const reducer = createReducer(
@@ -49,6 +51,12 @@ export const reducer = createReducer(
       })
       .addCase(loadOfferComments, (state, actions) => {
         state.offerComments = actions.payload;
+      })
+      .addCase(setIsOffersLoaded, (state, actions) => {
+        state.isOffersLoaded = actions.payload;
+      })
+      .addCase(setIsNewReviewLoaded, (state, actions) => {
+        state.isNewReviewLoaded = actions.payload;
       })
       .addCase(sortOffers, (state, actions) => {
         if (actions.payload) {
