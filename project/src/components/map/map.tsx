@@ -1,8 +1,9 @@
 import { useRef, useEffect } from 'react';
 import leaflet from 'leaflet';
-import { MapPins } from 'const';
+import { AppRoute, MapPins } from 'const';
 import { Offer } from 'types';
 import { useAppSelector, useMap } from 'hooks';
+import { useLocation } from 'react-router-dom';
 
 interface Props {
   selectedOffer: Offer | undefined;
@@ -24,15 +25,22 @@ const currentIcon = leaflet.icon({
 export default function Map({ selectedOffer, className }: Props) {
   const mapRef = useRef(null);
   const offers = useAppSelector((state) => state.offers);
+  const nearby = useAppSelector((state) => state.nearbyOffers);
+  const location = useLocation();
 
-  const location = useAppSelector((state) => state.city);
-  const map = useMap(location, mapRef);
+  const cityLocation = useAppSelector((state) => state.city);
+  const map = useMap(cityLocation, mapRef);
 
   useEffect(() => {
     if (map) {
       const layerGroup = leaflet.layerGroup().addTo(map);
+      let offersList = offers;
 
-      offers.forEach((item) => {
+      if (location.pathname !== AppRoute.Main) {
+        offersList = nearby;
+      }
+
+      offersList.forEach((item) => {
         leaflet
           .marker({
             lat: item.location.latitude,
@@ -49,7 +57,7 @@ export default function Map({ selectedOffer, className }: Props) {
         map.removeLayer(layerGroup);
       };
     }
-  }, [map, offers, selectedOffer]);
+  }, [map, offers, selectedOffer, nearby, location.pathname]);
 
   return (
     <section className={className} style={{ width: '100%' }} ref={mapRef}></section>

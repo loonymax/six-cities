@@ -1,4 +1,5 @@
 import { Rating } from 'types';
+import './style.css';
 
 interface Props {
   rating: Rating;

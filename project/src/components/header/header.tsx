@@ -1,6 +1,6 @@
 import { Logo, LoggedNav, NoLoggedNav } from 'components';
 import { useEffect } from 'react';
-import { checkAutn } from 'store';
+import { checkAuth } from 'store';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { AuthorizationStatus } from 'const';
 
@@ -9,7 +9,7 @@ export default function Header() {
   const auth = useAppSelector((state) => state.authorizationStatus);
 
   useEffect(() => {
-    dispatch(checkAutn());
+    dispatch(checkAuth());
   }, [dispatch]);
 
   return (

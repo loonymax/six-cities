@@ -38,16 +38,6 @@ export interface Rating {
   id: string;
 }
 
-export interface Review {
-  id: number;
-  image: string;
-  userName: string;
-  rating: string;
-  text: string;
-  date: string;
-  dateTime: string;
-}
-
 export interface CityInfo {
   name: string;
   location: {
