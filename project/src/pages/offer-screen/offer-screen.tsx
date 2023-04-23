@@ -13,7 +13,7 @@ export default function OfferScreen() {
   const offer = useAppSelector((state) => state.offerPage);
   const nearbyOffers = useAppSelector((state) => state.nearbyOffers);
   const offerComments = useAppSelector((state) => state.offerComments);
-  const isOffersLoaded = useAppSelector((state) => state.isOffersLoaded);
+  const isOffersLoading = useAppSelector((state) => state.isOffersLoaded);
   const isNewReviewLoaded = useAppSelector((state) => state.isNewReviewLoaded);
 
   useEffect(() => {
@@ -22,11 +22,12 @@ export default function OfferScreen() {
     }
   }, [dispatch, id, isNewReviewLoaded]);
 
-  if (!offer || isOffersLoaded) {
+
+  if (isOffersLoading) {
     return <Spinner />;
   }
 
-  if (!id) {
+  if (!offer) {
     return <Screen404 />;
   }
 

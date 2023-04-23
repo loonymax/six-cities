@@ -81,7 +81,7 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   },
 );
 
-export const sendReviewAction = createAsyncThunk<void,
+export const sendReviewAction = createAsyncThunk<NewComment,
   {
     offerId: Offer['id'];
     comment: NewComment['comment'];
@@ -94,7 +94,8 @@ export const sendReviewAction = createAsyncThunk<void,
   }>(
     'user/sendReview',
     async ({ comment, rating, offerId }, { dispatch, extra: api }) => {
-      await api.post<NewComment>(APIRoute.OfferComments.replace(/id/, `${offerId}`), { comment, rating });
+      const { data } = await api.post<NewComment>(APIRoute.OfferComments.replace(/id/, `${offerId}`), { comment, rating });
       dispatch(setIsNewReviewLoaded(true));
+      return data;
     }
   );

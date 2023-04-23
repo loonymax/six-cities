@@ -8,7 +8,7 @@ const sortingValues = Object.values(sorting);
 
 export default function SortingForm() {
   const [isOpen, setIsOpen] = useState(false);
-  const select = useAppSelector((state) => state.sorting);
+  const sortingValue = useAppSelector((state) => state.sorting);
   const dispatch = useAppDispatch();
 
   const handleSortingChange = (event: MouseEvent<HTMLElement>) => {
@@ -20,13 +20,13 @@ export default function SortingForm() {
     <form className="places__sorting" action="/#" method="get">
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex={0} onClick={handleSortingChange}>
-        {select}
+        {sortingValue}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
       <ul className={classNames('places__options ', 'places__options--custom', { 'places__options--opened': isOpen === true })}>
-        {sortingValues.map((value) => <li key={value} onClick={() => { dispatch(sortOffers(value)); setIsOpen(!isOpen); }} className={classNames('places__option', { 'places__option--active': select === value })} tabIndex={0}>{value}</li>)}
+        {sortingValues.map((value) => <li key={value} onClick={() => { dispatch(sortOffers(value)); setIsOpen(!isOpen); }} className={classNames('places__option', { 'places__option--active': sortingValue === value })} tabIndex={0}>{value}</li>)}
       </ul>
     </form>
   );

@@ -22,12 +22,6 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export enum ReviewFormValue {
-  Default = 0,
-  MinLength = 50,
-  MaxLength = 300,
-}
-
 export const MapPins = {
   DefaultPin: './img/pin.svg',
   ActivePin: './img/pin-active.svg',
