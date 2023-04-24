@@ -1,20 +1,20 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { fetchOffer } from 'store';
 import { useParams } from 'react-router-dom';
 import { OfferItem, Spinner } from 'components';
 import { Screen404 } from 'pages';
+import { fetchOffer } from 'store/offer';
 
 
 export default function OfferScreen() {
   const { id } = useParams();
   const dispatch = useAppDispatch();
 
-  const offer = useAppSelector((state) => state.offerPage);
-  const nearbyOffers = useAppSelector((state) => state.nearbyOffers);
-  const offerComments = useAppSelector((state) => state.offerComments);
-  const isOffersLoading = useAppSelector((state) => state.isOffersLoaded);
-  const isNewReviewLoaded = useAppSelector((state) => state.isNewReviewLoaded);
+  const offer = useAppSelector((state) => state.offers.offerPage);
+  const nearbyOffers = useAppSelector((state) => state.offers.nearbyOffers);
+  const offerComments = useAppSelector((state) => state.offers.offerComments);
+  const isOffersLoading = useAppSelector((state) => state.offers.isOffersLoaded);
+  const isNewReviewLoaded = useAppSelector((state) => state.offers.isNewReviewLoaded);
 
   useEffect(() => {
     if (id) {

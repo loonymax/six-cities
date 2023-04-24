@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { changeCity } from 'store';
 import { CityInfo } from 'types';
 import { default as classNames } from 'classnames';
+import { changeCity } from 'store/offer';
 
 interface Props {
   cityName: CityInfo;
@@ -9,7 +9,7 @@ interface Props {
 
 export default function City({ cityName }: Props) {
   const dispatch = useAppDispatch();
-  const currentCity = useAppSelector((item) => item.city.name);
+  const currentCity = useAppSelector((item) => item.offers.city.name);
 
   const handleCityChange = () => {
     dispatch(changeCity(cityName));

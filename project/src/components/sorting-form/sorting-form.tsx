@@ -2,13 +2,13 @@ import { sorting } from 'const';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import classNames from 'classnames';
 import { MouseEvent, useState } from 'react';
-import { sortOffers } from 'store';
+import { sortOffers } from 'store/offer';
 
 const sortingValues = Object.values(sorting);
 
 export default function SortingForm() {
   const [isOpen, setIsOpen] = useState(false);
-  const sortingValue = useAppSelector((state) => state.sorting);
+  const sortingValue = useAppSelector((state) => state.offers.sorting);
   const dispatch = useAppDispatch();
 
   const handleSortingChange = (event: MouseEvent<HTMLElement>) => {

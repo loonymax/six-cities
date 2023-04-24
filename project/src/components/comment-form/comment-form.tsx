@@ -2,7 +2,7 @@ import { StarIcon } from 'components';
 import { ChangeEventHandler, FormEvent, useState } from 'react';
 import { ratingStars } from 'mocks';
 import { useAppDispatch } from 'hooks';
-import { sendReviewAction } from 'store/api-actions';
+import { sendReviewAction } from 'store/offer/api-actions';
 
 interface Props {
   offerId: number;

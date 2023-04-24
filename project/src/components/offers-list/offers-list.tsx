@@ -9,7 +9,7 @@ interface Props {
 }
 
 export default function OffersList({ offersList, onOfferHover, className }: Props) {
-  const isOffersLoaded = useAppSelector((state) => state.isOffersLoaded);
+  const isOffersLoaded = useAppSelector((state) => state.offers.isOffersLoaded);
 
   return (
     <div className={className}>

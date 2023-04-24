@@ -34,7 +34,7 @@ export default function ReviewItem({ review }: Props) {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{ width: `${rating * 100 / 5}%` }}></span>
+            <span style={{ width: `${Math.round(rating * 100 / 5)}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

@@ -2,13 +2,13 @@ import { AppRoute } from 'const';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { FormEvent, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { loginAction } from 'store';
+import { loginAction } from 'store/user';
 
 export default function LoginScreen() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const cityName = useAppSelector((state) => state.city.name);
+  const cityName = useAppSelector((state) => state.offers.city.name);
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
@@ -37,7 +37,7 @@ export default function LoginScreen() {
             </div>
             <div className="login__input-wrapper form__input-wrapper">
               <label className="visually-hidden">Password</label>
-              <input ref={passwordRef} className="login__input form__input" type="password" name="password" placeholder="Password" required />
+              <input ref={passwordRef} className="login__input form__input" type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{2,}$" name="password" placeholder="Password" required />
             </div>
             <button className="login__submit form__submit button" type="submit">Sign in</button>
           </form>

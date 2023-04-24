@@ -12,7 +12,7 @@ interface Props {
 export default function CitiesCard({ offer, onOfferHover }: Props) {
   const { title, price, rating, type, previewImage, isPremium, id } = offer;
 
-  const ratingBar = `${rating * 100 / 5}%`;
+  const ratingBar = `${Math.round(rating * 100 / 5)}%`;
 
   const handleMouseEnter = (event: MouseEvent<HTMLLIElement>) => {
     event.preventDefault();

@@ -43,7 +43,7 @@ export default function OfferItem({ offerData, nearbyOffers, offerComments }: Pr
             </div>
             <div className="property__rating rating">
               <div className="property__stars rating__stars">
-                <span style={{ width: `${rating * 100 / 5}%` }}></span>
+                <span style={{ width: `${Math.round(rating * 100 / 5)}%` }}></span>
                 <span className="visually-hidden">Rating</span>
               </div>
               <span className="property__rating-value rating__value">{rating}</span>
