@@ -38,7 +38,7 @@ export const fetchOffer = createAsyncThunk<void, Offer['id'], {
   }
 );
 
-export const sendReviewAction = createAsyncThunk<NewComment,
+export const sendReviewAction = createAsyncThunk<void,
   {
     offerId: Offer['id'];
     comment: NewComment['comment'];
@@ -51,8 +51,7 @@ export const sendReviewAction = createAsyncThunk<NewComment,
   }>(
     'user/sendReview',
     async ({ comment, rating, offerId }, { dispatch, extra: api }) => {
-      const { data } = await api.post<NewComment>(APIRoute.OfferComments.replace(/id/, `${offerId}`), { comment, rating });
+      await api.post<NewComment>(APIRoute.OfferComments.replace(/id/, `${offerId}`), { comment, rating });
       dispatch(setIsNewReviewLoaded(true));
-      return data;
     }
   );

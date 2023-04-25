@@ -16,9 +16,6 @@ const initialState: Initial = {
   avatar: null,
 };
 
-const {log} = console;
-log(initialState.avatar, initialState.name);
-
 export const userReducer = createReducer(
   initialState, (builder) => {
     builder

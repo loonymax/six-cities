@@ -1,4 +1,6 @@
 import { CommentForm, ReviewsList, OffersList, Map } from 'components';
+import { AuthorizationStatus } from 'const';
+import { useAppSelector } from 'hooks';
 import { useState } from 'react';
 import { Comment, Offer } from 'types';
 
@@ -10,6 +12,8 @@ interface Props {
 
 export default function OfferItem({ offerData, nearbyOffers, offerComments }: Props) {
   const { id, price, rating, type, isPremium, images, goods, title, maxAdults, bedrooms, description, host: { avatarUrl, isPro, name } } = offerData;
+
+  const authStatus = useAppSelector((state) => state.user.authorizationStatus);
 
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
   const onOfferHover = (offerId: number | null) => {
@@ -92,7 +96,9 @@ export default function OfferItem({ offerData, nearbyOffers, offerComments }: Pr
             <section className="property__reviews reviews">
               {offerComments ? (
                 <ReviewsList comments={offerComments} />) : null}
-              <CommentForm offerId={id}/>
+              {authStatus === AuthorizationStatus.Auth ?
+                <CommentForm offerId={id} /> :
+                null}
             </section>
           </div>
         </div>

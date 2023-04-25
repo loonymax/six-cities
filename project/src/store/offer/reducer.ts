@@ -9,11 +9,11 @@ interface Initial {
   offerPage: Offer | null;
   offerComments: Comment[];
   nearbyOffers: Offer[];
-  isNewReviewLoaded: boolean;
   city: CityInfo;
   sorting: string;
   isOffersLoaded: boolean;
   error: string | null;
+  isNewReviewLoaded: boolean;
 }
 
 const initialState: Initial = {
@@ -22,11 +22,11 @@ const initialState: Initial = {
   offerPage: null,
   offerComments: [],
   nearbyOffers: [],
-  isNewReviewLoaded: false,
   city: defaultCity,
   sorting: sorting.popular,
   isOffersLoaded: false,
   error: null,
+  isNewReviewLoaded: false,
 };
 
 export const offersReducer = createReducer(
@@ -74,7 +74,12 @@ export const offersReducer = createReducer(
         state.offerPage = actions.payload;
       })
       .addCase(loadOfferComments, (state, actions) => {
-        state.offerComments = actions.payload;
+        state.offerComments = actions.payload.sort((a, b) => {
+          if (a.date < b.date) {
+            return 1;
+          }
+          return -1;
+        }).slice(0, 10);
       })
       .addCase(setIsNewReviewLoaded, (state, actions) => {
         state.isNewReviewLoaded = actions.payload;

@@ -17,4 +17,4 @@ export { default as Spinner } from './spinner/spinner';
 export { default as NoLoggedNav } from './no-logged-nav/no-logged-nav';
 export { default as LoggedNav } from './logged-nav/logged-nav';
 export { default as OfferItem } from './offer-item/offer-item';
-export { default as ErrorMessage } from './error-message/error-message';
+export { default as ScrollToTop } from './scroll-to-top/scroll-to-top';
