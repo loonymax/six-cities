@@ -8,5 +8,8 @@ export const loadOffer = createAction<Offer>('data/loadOffer');
 export const setIsOffersLoaded = createAction<boolean>('data/setIsOffersLoaded');
 export const sortOffers = createAction<string>('offers/sortOffers');
 
-export const loadOfferComments = createAction<Comment[]>('data/loadOfferComments');
-export const setIsNewReviewLoaded = createAction<boolean>('data/setIsNewReviewLoaded');
+export const loadOfferComments = createAction<Comment[]>('comment/loadOfferComments');
+export const setIsNewReviewLoaded = createAction('comment/setIsNewReviewLoaded');
+export const sendReview = createAction('comment/sendReview');
+export const sendReviewSuccess = createAction<Comment[]>('comment/sendReviewSuccess');
+export const sendReviewError = createAction<string>('comment/sendReviewError');

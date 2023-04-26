@@ -1,7 +1,7 @@
-import { AxiosInstance } from 'axios';
+import { AxiosError, AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { State, AppDispatch, Offer, Comment, NewComment } from 'types';
-import { loadOffers, setIsOffersLoaded, loadOffer, loadNearbyOffers, loadOfferComments, setIsNewReviewLoaded } from './action';
+import { loadOffers, setIsOffersLoaded, loadOffer, loadNearbyOffers, loadOfferComments, sendReviewSuccess, sendReviewError, sendReview } from './action';
 import { APIRoute } from 'const';
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
@@ -51,7 +51,15 @@ export const sendReviewAction = createAsyncThunk<void,
   }>(
     'user/sendReview',
     async ({ comment, rating, offerId }, { dispatch, extra: api }) => {
-      await api.post<NewComment>(APIRoute.OfferComments.replace(/id/, `${offerId}`), { comment, rating });
-      dispatch(setIsNewReviewLoaded(true));
-    }
-  );
+      dispatch(sendReview());
+      try {
+        const response = await api.post<NewComment>(APIRoute.OfferComments.replace(/id/, `${offerId}`), { comment, rating });
+        if (response.status === 200 && Array.isArray(response.data)) {
+          return void dispatch(sendReviewSuccess(response.data));
+        }
+        throw new Error('Sending feedback failed');
+      } catch (error) {
+        const e = (error as AxiosError);
+        dispatch(sendReviewError(e.message));
+      }
+    });

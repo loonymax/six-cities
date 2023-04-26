@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { defaultCity, sorting } from 'const';
 import { CityInfo, Comment, Offer } from 'types';
-import { changeCity, loadNearbyOffers, loadOffer, loadOfferComments, loadOffers, setIsNewReviewLoaded, setIsOffersLoaded, sortOffers } from './action';
+import { changeCity, loadNearbyOffers, loadOffer, loadOfferComments, loadOffers, sendReview, sendReviewError, sendReviewSuccess, setIsOffersLoaded, sortOffers } from './action';
 
 interface Initial {
   OFFERS: Offer[];
@@ -13,7 +13,11 @@ interface Initial {
   sorting: string;
   isOffersLoaded: boolean;
   error: string | null;
-  isNewReviewLoaded: boolean;
+  comment: {
+    isPending: boolean;
+    error: string | null;
+    isSuccess: boolean;
+  };
 }
 
 const initialState: Initial = {
@@ -26,7 +30,11 @@ const initialState: Initial = {
   sorting: sorting.popular,
   isOffersLoaded: false,
   error: null,
-  isNewReviewLoaded: false,
+  comment: {
+    isPending: false,
+    error: null,
+    isSuccess: false,
+  }
 };
 
 export const offersReducer = createReducer(
@@ -81,8 +89,27 @@ export const offersReducer = createReducer(
           return -1;
         }).slice(0, 10);
       })
-      .addCase(setIsNewReviewLoaded, (state, actions) => {
-        state.isNewReviewLoaded = actions.payload;
+      .addCase(sendReview, (state) => {
+        state.comment.isPending = true;
+        state.comment.error = null;
+        state.comment.isSuccess = false;
+      })
+      .addCase(sendReviewSuccess, (state, actions) => {
+        state.comment.isPending = false;
+        state.comment.error = null;
+        state.comment.isSuccess = true;
+
+        state.offerComments = actions.payload.sort((a, b) => {
+          if (a.date < b.date) {
+            return 1;
+          }
+          return -1;
+        }).slice(0, 10);
+      })
+      .addCase(sendReviewError, (state, actions) => {
+        state.comment.isPending = false;
+        state.comment.error = actions.payload;
+        state.comment.isSuccess = true;
       });
   }
 );
