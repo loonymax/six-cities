@@ -1,11 +1,12 @@
 import { CitiesHomeScreen, LoginScreen, OfferScreen, Screen404 } from 'pages';
-import { Layout } from 'components';
+import { Layout, ScrollToTop } from 'components';
 import { AppRoute } from 'const';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path={AppRoute.Main} element={<Layout />}>
           <Route

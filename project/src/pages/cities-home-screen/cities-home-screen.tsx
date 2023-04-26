@@ -2,12 +2,12 @@ import { OffersList, Map, Cities, SortingForm } from 'components';
 import { Offer } from 'types';
 import { useState, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { fetchOffersAction } from 'store/api-actions';
+import { fetchOffersAction } from 'store/offer';
 
 export default function CitiesHomeScreen() {
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
   const dispatch = useAppDispatch();
-  const offers = useAppSelector((state) => state.offers);
+  const offers = useAppSelector((state) => state.offers.offers);
 
   useEffect(() => {
     dispatch(fetchOffersAction());
@@ -19,7 +19,7 @@ export default function CitiesHomeScreen() {
     setSelectedOffer(currentOffer);
   };
 
-  const currentCity = useAppSelector((state) => state.city.name);
+  const currentCity = useAppSelector((state) => state.offers.city.name);
 
   return (
     <main className="page__main page__main--index">

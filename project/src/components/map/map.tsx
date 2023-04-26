@@ -25,16 +25,16 @@ const currentIcon = leaflet.icon({
 export default function Map({ selectedOffer, className }: Props) {
   const mapRef = useRef(null);
   const offers = useAppSelector((state) => state.offers);
-  const nearby = useAppSelector((state) => state.nearbyOffers);
+  const nearby = useAppSelector((state) => state.offers.nearbyOffers);
   const location = useLocation();
 
-  const cityLocation = useAppSelector((state) => state.city);
+  const cityLocation = useAppSelector((state) => state.offers.city);
   const map = useMap(cityLocation, mapRef);
 
   useEffect(() => {
     if (map) {
       const layerGroup = leaflet.layerGroup().addTo(map);
-      let offersList = offers;
+      let offersList = offers.offers;
 
       if (location.pathname !== AppRoute.Main) {
         offersList = nearby;
