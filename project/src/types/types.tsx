@@ -9,7 +9,7 @@ export interface Offer {
     name: string;
   };
   description: string;
-  goods: [string];
+  goods: string[];
   host: {
     avatarUrl: string;
     id: number;
@@ -17,7 +17,7 @@ export interface Offer {
     name: string;
   };
   id: number;
-  images: [string];
+  images: string[];
   isPremium: boolean;
   location: {
     latitude: number;
@@ -39,9 +39,9 @@ export interface Rating {
 }
 
 export interface CityInfo {
-  name: string;
   location: {
     latitude: number;
     longitude: number;
   };
+  name: string;
 }
