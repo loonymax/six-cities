@@ -9,7 +9,7 @@ interface Initial {
   avatar: string | null;
 }
 
-const initialState: Initial = {
+export const initialState: Initial = {
   authorizationStatus: AuthorizationStatus.Unknown,
   error: null,
   name: null,

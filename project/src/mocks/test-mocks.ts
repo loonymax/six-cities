@@ -1,5 +1,5 @@
-import { CityInfo, Comment, Offer } from 'types';
-import { datatype, image } from 'faker';
+import { CityInfo, Comment, Offer, UserData } from 'types';
+import { datatype, image, internet } from 'faker';
 import { cities } from 'const';
 
 export const makeFakeCity = (): CityInfo => ({
@@ -66,3 +66,11 @@ export const makeFakeReviews = (length = 5): Comment[] => {
   const reviews = Array.from({ length: length }, () => makeFakeReview());
   return reviews;
 };
+
+export const makeFakeUserData = (): UserData => ({
+  id: datatype.number(),
+  email: internet.email(),
+  token: datatype.string(),
+  name: internet.userName(),
+  avatarUrl: image.imageUrl(),
+});

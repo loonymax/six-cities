@@ -1,38 +1,17 @@
-import { Initial, offersReducer } from './reducer';
-import { makeFakeCity, makeFakeOffers, makeFakeReviews } from 'mocks/test-mocks';
-import { changeCity, loadNearbyOffers, loadOfferComments, loadOffers, sendReview, sendReviewError, sendReviewSuccess, sortOffers } from './action';
-import { defaultCity, sorting } from 'const';
+import { initialState, offersReducer } from './reducer';
+import { makeFakeCity, makeFakeOffer, makeFakeOffers, makeFakeReviews } from 'mocks/test-mocks';
+import { changeCity, loadNearbyOffers, loadOffer, loadOfferComments, loadOffers, sendReview, sendReviewError, sendReviewSuccess, setIsOffersLoaded, sortOffers } from './action';
+import { sorting } from 'const';
 import { datatype } from 'faker';
 
 const city = makeFakeCity();
-// const offer = makeFakeOffer();
+const offer = makeFakeOffer();
 const offers = makeFakeOffers(10);
 const sortingKeys = Object.keys(sorting);
 const sortingValue = sortingKeys[datatype.number(sortingKeys.length - 1)];
 const reviews = makeFakeReviews();
 
 describe('Reducer: offerReducer', () => {
-  let initialState: Initial;
-
-  beforeEach(() => {
-    initialState = {
-      OFFERS: [],
-      offers: [],
-      offerPage: null,
-      offerComments: [],
-      nearbyOffers: [],
-      city: defaultCity,
-      sorting: sorting.popular,
-      isOffersLoaded: false,
-      error: null,
-      comment: {
-        isPending: false,
-        error: null,
-        isSuccess: false,
-      }
-    };
-  });
-
   it('without additional parameters should return initial state', () => {
     expect(offersReducer(undefined, { type: 'UNKNOWN_ACTION' })).toEqual(
       initialState
@@ -46,7 +25,7 @@ describe('Reducer: offerReducer', () => {
 
   it('should change city name, location and offers', () => {
     expect(offersReducer(initialState, changeCity(city)))
-      .toEqual({ ...initialState, city: city, offers: offers.filter((hotel) => hotel.city.name === initialState.city.name) });
+      .toEqual({ ...initialState, city: city });
   });
 
   it('should load nearby offers', () => {
@@ -54,7 +33,10 @@ describe('Reducer: offerReducer', () => {
       .toEqual({ ...initialState, nearbyOffers: offers });
   });
 
-  // setIsOffersLoaded
+  it('should put true to load offers', () => {
+    expect(offersReducer(initialState, setIsOffersLoaded(true)))
+      .toEqual({ ...initialState, isOffersLoaded: true });
+  });
 
   it('should sort offers', () => {
     expect(offersReducer(initialState, sortOffers(sortingValue)))
@@ -62,7 +44,10 @@ describe('Reducer: offerReducer', () => {
     // нужен ли здесь switch case, как в редьюсере?
   });
 
-  // loadOffer
+  it('should load offer information', () => {
+    expect(offersReducer(initialState, loadOffer(offer)))
+      .toEqual({ ...initialState, offerPage: offer });
+  });
 
   it('should load offer comments', () => {
     expect(offersReducer(initialState, loadOfferComments(reviews)))
@@ -76,8 +61,7 @@ describe('Reducer: offerReducer', () => {
 
   it('should send review success', () => {
     expect(offersReducer(initialState, sendReviewSuccess(reviews)))
-      .toEqual({ ...initialState, comment: { isPending: false, error: null, isSuccess: true } });
-    // ошибка в error: null
+      .toEqual({ ...initialState, comment: { isPending: false, error: null, isSuccess: true }, offerComments: reviews });
   });
 
   it('should send review error', () => {
