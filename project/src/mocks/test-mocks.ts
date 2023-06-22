@@ -1,4 +1,4 @@
-import { CityInfo, Comment, Offer, UserData } from 'types';
+import { AuthData, CityInfo, Comment, NewComment, Offer, UserData } from 'types';
 import { datatype, image, internet } from 'faker';
 import { cities } from 'const';
 
@@ -73,4 +73,15 @@ export const makeFakeUserData = (): UserData => ({
   token: datatype.string(),
   name: internet.userName(),
   avatarUrl: image.imageUrl(),
+});
+
+export const makeFakeNewReview = (): NewComment => ({
+  comment: datatype.string(),
+  rating: datatype.number(5),
+});
+
+
+export const makeFakeAuthData = (): AuthData => ({
+  email: internet.email(),
+  password: datatype.string(10),
 });
