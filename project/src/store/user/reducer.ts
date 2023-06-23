@@ -2,14 +2,14 @@ import { createReducer } from '@reduxjs/toolkit';
 import { changeAuthorizationStatus, setError, saveUserInfo } from './action';
 import { AuthorizationStatus } from 'const';
 
-interface Initial {
+export interface InitialUserState {
   authorizationStatus: AuthorizationStatus;
   error: string | null;
   name: string | null;
   avatar: string | null;
 }
 
-export const initialState: Initial = {
+export const initialState: InitialUserState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   error: null,
   name: null,

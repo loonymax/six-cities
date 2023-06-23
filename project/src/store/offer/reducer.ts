@@ -3,7 +3,7 @@ import { defaultCity, sorting } from 'const';
 import { CityInfo, Comment, Offer } from 'types';
 import { changeCity, loadNearbyOffers, loadOffer, loadOfferComments, loadOffers, sendReview, sendReviewError, sendReviewSuccess, setIsOffersLoaded, sortOffers } from './action';
 
-interface Initial {
+export interface InitialOffersState {
   OFFERS: Offer[];
   offers: Offer[];
   offerPage: Offer | null;
@@ -20,7 +20,7 @@ interface Initial {
   };
 }
 
-export const initialState: Initial = {
+export const initialState: InitialOffersState = {
   OFFERS: [],
   offers: [],
   offerPage: null,

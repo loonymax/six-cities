@@ -41,7 +41,6 @@ describe('Reducer: offerReducer', () => {
   it('should sort offers', () => {
     expect(offersReducer(initialState, sortOffers(sortingValue)))
       .toEqual({ ...initialState, sorting: sortingValue });
-    // нужен ли здесь switch case, как в редьюсере?
   });
 
   it('should load offer information', () => {

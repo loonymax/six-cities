@@ -1,11 +1,12 @@
 import { CitiesHomeScreen, LoginScreen, OfferScreen, Screen404 } from 'pages';
+import { HelmetProvider } from 'react-helmet-async';
 import { Layout, ScrollToTop } from 'components';
 import { AppRoute } from 'const';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HelmetProvider>
       <ScrollToTop />
       <Routes>
         <Route path={AppRoute.Main} element={<Layout />}>
@@ -26,7 +27,7 @@ function App() {
           />
         </Route>
       </Routes>
-    </BrowserRouter >
+    </HelmetProvider>
   );
 }
 
